@@ -4,6 +4,17 @@ Your mission, should you choose to accept it, is to implement a two-player game
 of [Tic-tac-toe](https://en.wikipedia.org/wiki/Tic-tac-toe) in the web
 browser.
 
+## Rules
+
+HONOR RULES: You must do this challenge on your own, without assistance or review 
+from others, and without help from the Internet. You will be asked to affirm that 
+you developed your work independently. 
+
+TIME LIMIT: You have 3 days from the date you receive a link to this site. You may 
+submit your work earlier.
+
+## Requirements
+
 The basic requirements for the game are:
   - display a 3x3 game board
   - allow two players to enter their names, and automatically assign one of
@@ -23,8 +34,10 @@ Since this is an UI coding challenge, the success of your mission depends on bui
 ## Technologies
 
 We ask that you implement the game
-using [Typescript](https://www.typescriptlang.org/) and [SCSS](http://sass-lang.com/), but you may otherwise
-choose the libraries you like.
+using [SCSS](http://sass-lang.com/), but you may otherwise choose the 
+libraries you like. 
+
+Bonus points for using [Typescript](https://www.typescriptlang.org/).
 
 ## Setup
 
@@ -110,4 +123,5 @@ For bonus points, you may choose to implement:
 
 ## Submission
 
-Please submit your challenge as a pull request against this repository.
+When you are ready, please submit your challenge as a pull request 
+against this repository.
