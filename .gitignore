@@ -1,0 +1,9 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+__conda_buildnum__.txt
+__conda_version__.txt
+
+*.py[cod]
+*$py.class
+
+ui/node_modules/

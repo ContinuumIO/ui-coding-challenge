@@ -1,0 +1,7 @@
+name: ui-coding-challenge
+channels:
+- defaults
+dependencies:
+- nodejs=4.2.6=0
+- python=3.5.2=0
+- tornado=4.4.2=py35_0
