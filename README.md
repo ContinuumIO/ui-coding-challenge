@@ -3,6 +3,7 @@
 Your mission, should you choose to accept it, is to implement a two-player game
 of [Tic-tac-toe](https://en.wikipedia.org/wiki/Tic-tac-toe) in the web
 browser. The basic requirements for the game are:
+
     - display a 3x3 game board
     - allow two players to enter their names, and automatically assign one of
       them the circle and the other the 'x'
@@ -43,18 +44,21 @@ should build the code and start the server running on localhost.
 
 ## Game data structure
 
-A game consists of two players, represented by their names as strings, and a 3x3
-board, represented by an array of nine elements -- each element being `null` if
-the square is blank, or filled with either 0 or 1 to indicate which player
-controls the square. So, for example, a game between Alice and Bhopal, where
-Alice has won with a diagonal row of squares, might look like:
+A game consists of:
+ - two players, represented by their names as strings
+ - a 3x3 board, represented by an array of nine elements. The first element in the array
+   represents the top left corner of the board, and the array continues left-to-right and
+   top-to-bottom for the remaining squares. Each element is `null` if the square is blank,
+   or either 0 or 1 to indicate which player controls the square. So, for example, a game
+   between Alice and Bhopal, where Alice has won with a diagonal row of squares, might
+   look like:
 
 ```json
 {
   "players": ["Alice", "Bhopal"],
   "board": [   0,    1, null,
             null,    0,    1,
-               0,    0,    1]
+               0,    1,    0]
 }
 ```
 
