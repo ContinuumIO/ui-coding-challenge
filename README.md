@@ -2,13 +2,15 @@
 
 Your mission, should you choose to accept it, is to implement a two-player game
 of [Tic-tac-toe](https://en.wikipedia.org/wiki/Tic-tac-toe) in the web
-browser. The basic requirements for the game are:
-    - display a 3x3 game board
-    - allow two players to enter their names, and automatically assign one of
-      them the circle and the other the 'x'
-    - allow each to play a turn, one at a time, during which the player selects
-      a square of the board and it is filled in with their symbol
-    - indicate when one of the players has won, or the game is a draw
+browser.
+
+The basic requirements for the game are:
+  - display a 3x3 game board
+  - allow two players to enter their names, and automatically assign one of
+    them the circle and the other the 'x'
+  - allow each to play a turn, one at a time, during which the player selects
+    a square of the board and it is filled in with their symbol
+  - indicate when one of the players has won, or the game is a draw
 
 In addition to implementing basic gameplay, the user must be able to save their
 game to the server.
