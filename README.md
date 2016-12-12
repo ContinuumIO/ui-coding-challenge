@@ -7,7 +7,7 @@ browser.
 ## Rules
 
 HONOR RULES: You must do this challenge on your own, without assistance or review
-from others, and without help from the Internet. You will be asked to affirm that
+from others, and without copying from the Internet. You will be asked to affirm that
 you developed your work independently.
 
 TIME LIMIT: You have 3 days from the date you receive a link to this site. You may
@@ -33,12 +33,12 @@ Since this is an UI coding challenge, the success of your mission depends on bui
 
 ## Technologies
 
-We ask that you implement the game using Javascript (ES6 preferred) and
+We ask that you implement the game using Javascript and
 [SCSS](http://sass-lang.com/) but you may otherwise choose the libraries you like.
 
-You may use [Typescript](https://www.typescriptlang.org/), but please do not
-use other compile-to-JS options such as Coffeescript, Clojurescript, Elm, or
-Dart.
+We prefer [Typescript](https://www.typescriptlang.org/) and the [PhosphorJS](http://phosphorjs.github.io/)
+framework, but they are not required. However, we'd prefer if you didn't use
+other compile-to-JS options such as Coffeescript, Clojurescript, Elm, or Dart.
 
 ## Setup
 
@@ -116,15 +116,15 @@ specification.
 - `POST /api/games/<id>`: Update the `Game` with the given ID, replacing its
   data with the newly `POST`ed data.
 
-## Optional extras
+## Optional
 
-For bonus points, you may choose to use:
- - [Typescript](https://www.typescriptlang.org/), as mentioned above
- - [PhosphorJS](http://phosphorjs.github.io/)
-
-You may also choose to implement:
+If you have extra time and want to take on an additional challenge, you may
+choose to implement:
  - viewing & restoring saved games
  - an "AI" player option, where someone can play against the computer
+
+However, please be aware that we'd prefer a more polished implementation to
+more features!
 
 ## Submission
 
