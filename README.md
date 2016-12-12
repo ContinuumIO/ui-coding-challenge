@@ -33,8 +33,12 @@ Since this is an UI coding challenge, the success of your mission depends on bui
 
 ## Technologies
 
-We ask that you implement the game using Javascript (ES6) or [Typescript](https://www.typescriptlang.org/)
-and [SCSS](http://sass-lang.com/) but you may otherwise choose the libraries you like.
+We ask that you implement the game using Javascript (ES6 preferred) and
+[SCSS](http://sass-lang.com/) but you may otherwise choose the libraries you like.
+
+You may use [Typescript](https://www.typescriptlang.org/), but please do not
+use other compile-to-JS options such as Coffeescript, Clojurescript, Elm, or
+Dart.
 
 ## Setup
 
@@ -114,9 +118,11 @@ specification.
 
 ## Optional extras
 
-For bonus points, you may choose to implement:
- - [Typescript](https://www.typescriptlang.org/)
+For bonus points, you may choose to use:
+ - [Typescript](https://www.typescriptlang.org/), as mentioned above
  - [PhosphorJS](http://phosphorjs.github.io/)
+
+You may also choose to implement:
  - viewing & restoring saved games
  - an "AI" player option, where someone can play against the computer
 
