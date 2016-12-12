@@ -23,7 +23,7 @@ Since this is an UI coding challenge, the success of your mission depends on bui
 ## Technologies
 
 We ask that you implement the game
-using [Typescript](https://www.typescriptlang.org/), but you may otherwise
+using [Typescript](https://www.typescriptlang.org/) and [SCSS](http://sass-lang.com/), but you may otherwise
 choose the libraries you like.
 
 ## Setup
@@ -37,7 +37,8 @@ to recreate the environment.
 We provide a basic NPM `package.json` and Webpack configuration to build the
 Typescript code -- the provided `main.ts` file should work as an entry-point,
 and `hello.ts` provides a toy example of creating and importing your own
-modules.
+modules. There is also a basic `index.scss` with some dummy styling, which has
+been tested to build correctly with this setup.
 
 We also provide the game & HTML server, written using
 the [Tornado](http://tornadoweb.org) web framework, and a `run.py` script that
