@@ -6,11 +6,11 @@ browser.
 
 ## Rules
 
-HONOR RULES: You must do this challenge on your own, without assistance or review 
-from others, and without help from the Internet. You will be asked to affirm that 
-you developed your work independently. 
+HONOR RULES: You must do this challenge on your own, without assistance or review
+from others, and without help from the Internet. You will be asked to affirm that
+you developed your work independently.
 
-TIME LIMIT: You have 3 days from the date you receive a link to this site. You may 
+TIME LIMIT: You have 3 days from the date you receive a link to this site. You may
 submit your work earlier.
 
 ## Requirements
@@ -33,11 +33,12 @@ Since this is an UI coding challenge, the success of your mission depends on bui
 
 ## Technologies
 
-We ask that you implement the game
-using [SCSS](http://sass-lang.com/), but you may otherwise choose the 
-libraries you like. 
+We ask that you implement the game using Javascript (ES6 preferred) and
+[SCSS](http://sass-lang.com/) but you may otherwise choose the libraries you like.
 
-Bonus points for using [Typescript](https://www.typescriptlang.org/).
+You may use [Typescript](https://www.typescriptlang.org/), but please do not
+use other compile-to-JS options such as Coffeescript, Clojurescript, Elm, or
+Dart.
 
 ## Setup
 
@@ -47,11 +48,11 @@ supplied
 [environment.yml](http://conda.pydata.org/docs/using/envs.html#use-environment-from-file) file
 to recreate the environment.
 
-We provide a basic NPM `package.json` and Webpack configuration to build the
-Typescript code -- the provided `main.ts` file should work as an entry-point,
-and `hello.ts` provides a toy example of creating and importing your own
-modules. There is also a basic `index.scss` with some dummy styling, which has
-been tested to build correctly with this setup.
+We provide a basic NPM `package.json` and Webpack configuration to transpile ES6
+Javascript or compile Typescript -- the provided `main.js` file should work as
+an entry-point, and `hello.js` provides a toy example of creating and importing
+your own modules. There is also a basic `index.scss` with some dummy styling, which
+has been tested to build correctly with this setup.
 
 We also provide the game & HTML server, written using
 the [Tornado](http://tornadoweb.org) web framework, and a `run.py` script that
@@ -117,11 +118,15 @@ specification.
 
 ## Optional extras
 
-For bonus points, you may choose to implement:
+For bonus points, you may choose to use:
+ - [Typescript](https://www.typescriptlang.org/), as mentioned above
+ - [PhosphorJS](http://phosphorjs.github.io/)
+
+You may also choose to implement:
  - viewing & restoring saved games
  - an "AI" player option, where someone can play against the computer
 
 ## Submission
 
-When you are ready, please submit your challenge as a pull request 
+When you are ready, please submit your challenge as a pull request
 against this repository.
