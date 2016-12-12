@@ -44,11 +44,11 @@ supplied
 [environment.yml](http://conda.pydata.org/docs/using/envs.html#use-environment-from-file) file
 to recreate the environment.
 
-We provide a basic NPM `package.json` and Webpack configuration to build the
-Typescript code -- the provided `main.ts` file should work as an entry-point,
-and `hello.ts` provides a toy example of creating and importing your own
-modules. There is also a basic `index.scss` with some dummy styling, which has
-been tested to build correctly with this setup.
+We provide a basic NPM `package.json` and Webpack configuration to transpile ES6
+Javascript or compile Typescript -- the provided `main.js` file should work as
+an entry-point, and `hello.js` provides a toy example of creating and importing
+your own modules. There is also a basic `index.scss` with some dummy styling, which
+has been tested to build correctly with this setup.
 
 We also provide the game & HTML server, written using
 the [Tornado](http://tornadoweb.org) web framework, and a `run.py` script that
