@@ -25,6 +25,7 @@ class GameListHandler(RequestHandler):
         _REGISTRY.add(game_instance)
         self.set_status(201)
         self.set_header("Location", "/api/games/{}".format(game_instance._id))
+        self.write(game_instance.to_json())
 
 
 class GameByIDHandler(RequestHandler):
@@ -45,6 +46,7 @@ class GameByIDHandler(RequestHandler):
             game_data = json.loads(self.request.body.decode('utf-8'))
             game_instance = Game(**game_data)
             _REGISTRY.add(game_instance)
+            self.write(game_instance.to_json())
 
 
 CURRENT_DIR = os.path.dirname(__file__)
@@ -53,8 +55,8 @@ CURRENT_DIR = os.path.dirname(__file__)
 def run(port=8080, debug=False, **kwargs):
     handlers = [
         (r"/", IndexHandler),
-        (r"/api/games", GameListHandler),
-        (r"/api/games/([^/]+)", GameByIDHandler),
+        (r"/api/games/?", GameListHandler),
+        (r"/api/games/([^/]+)/?", GameByIDHandler),
     ]
     app = Application(
         handlers,
