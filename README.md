@@ -6,11 +6,11 @@ browser.
 
 ## Rules
 
-HONOR RULES: You must do this challenge on your own, without assistance or review 
-from others, and without help from the Internet. You will be asked to affirm that 
-you developed your work independently. 
+HONOR RULES: You must do this challenge on your own, without assistance or review
+from others, and without help from the Internet. You will be asked to affirm that
+you developed your work independently.
 
-TIME LIMIT: You have 3 days from the date you receive a link to this site. You may 
+TIME LIMIT: You have 3 days from the date you receive a link to this site. You may
 submit your work earlier.
 
 ## Requirements
@@ -33,11 +33,8 @@ Since this is an UI coding challenge, the success of your mission depends on bui
 
 ## Technologies
 
-We ask that you implement the game
-using [SCSS](http://sass-lang.com/), but you may otherwise choose the 
-libraries you like. 
-
-Bonus points for using [Typescript](https://www.typescriptlang.org/).
+We ask that you implement the game using Javascript (ES6) or [Typescript](https://www.typescriptlang.org/)
+and [SCSS](http://sass-lang.com/) but you may otherwise choose the libraries you like.
 
 ## Setup
 
@@ -118,10 +115,12 @@ specification.
 ## Optional extras
 
 For bonus points, you may choose to implement:
+ - [Typescript](https://www.typescriptlang.org/)
+ - [PhosphorJS](http://phosphorjs.github.io/)
  - viewing & restoring saved games
  - an "AI" player option, where someone can play against the computer
 
 ## Submission
 
-When you are ready, please submit your challenge as a pull request 
+When you are ready, please submit your challenge as a pull request
 against this repository.
