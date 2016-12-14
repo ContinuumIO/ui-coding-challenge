@@ -37,8 +37,10 @@ We ask that you implement the game using Javascript and
 [SCSS](http://sass-lang.com/) but you may otherwise choose the libraries you like.
 
 We prefer [Typescript](https://www.typescriptlang.org/) and the [PhosphorJS](http://phosphorjs.github.io/)
-framework, but they are not required. However, we'd prefer if you didn't use
-other compile-to-JS options such as Coffeescript, Clojurescript, Elm, or Dart.
+framework, but they are not required. You can certainly use React, Angular,
+VueJS, Ember, Knockout, or anything else you prefer. However, we'd
+appreciate it if you didn't use other compile-to-JS options such as
+Coffeescript, Clojurescript, Elm, or Dart.
 
 ## Setup
 
