@@ -1,6 +1,79 @@
+$border: 1px solid black;
+$hover_color: orange;
+$block_size: 3rem;
+$font_family: 'Helvetica', sans-serif;
+$text_color: black;
+
+.block {
+  width: $block_size;
+  height: $block_size;  
+}
+
+
 html {
-  background-color: #EFEFEF;
-  color: #222;
-  font-size: 1em;
+  background-color: #cccccc;
+  color: $text_color;
+
+  font-family: $font_family;
+  font-size: 1rem;
   line-height: 1.4;
+}
+
+label {
+  display: block;
+
+  &.current_player:after {
+    content: '<';
+    color: red;
+    font-weight: bold;
+  }
+}
+
+#controls {
+  margin: 1rem 0;
+
+  button[disabled] {
+    opacity: 0.5;
+  }
+}
+
+#board {
+  border-spacing: 0;
+  border-color: gray;
+
+  tr:nth-child(1) td { border-bottom: $border; }
+  tr:nth-child(2) td { border-bottom: $border; border-top: $border; }
+  tr:nth-child(3) td { border-top: $border; }
+
+  tr td:nth-child(1) { border-right: $border; }
+  tr td:nth-child(2) { border-left: $border; border-right: $border; }
+  tr td:nth-child(3) { border-left: $border; }
+
+  td {
+    padding: 0;
+    @extend .block;
+  }
+
+  button {
+    border: none;
+    margin: 0;
+    display: block;
+
+    color: $text_color;  
+    background-color: transparent;
+
+    font-size: $block_size;
+    text-align: center;
+    line-height: 0.25*$block_size;
+
+    @extend .block;
+
+    &:hover {
+      background-color: $hover_color;
+    }
+    &[disabled]:hover {
+      background-color: transparent;
+    }
+
+  }
 }

@@ -5,5 +5,44 @@
         <script src="{{ static_url('bundle.js') }}"></script>
     </head>
     <body>
+      
+      <div id="players">
+        <label for="player1_field">
+          X
+          <input id="player1_field" placeholder="Enter name">
+        </label>
+        <label for="player2_field">
+          O
+          <input id="player2_field" placeholder="Enter name">
+        </label>
+      </div>
+      
+      <div id="controls">
+        <button id="play_button" disabled>Play</button>
+        <button id="undo_button" disabled>Undo</button>
+        <button id="load_button" disabled>Load</button>
+        <button id="save_button" disabled>Save</button>
+      </div>
+
+      <table id="board">
+        <tbody>
+          <tr>
+            <td><button data-square="1"></button></td>
+            <td><button data-square="2"></button></td>
+            <td><button data-square="3"></button></td>
+          </tr>
+          <tr>
+            <td><button data-square="4"></button></td>
+            <td><button data-square="5"></button></td>
+            <td><button data-square="6"></button></td>
+          </tr>
+          <tr>
+            <td><button data-square="7"></button></td>
+            <td><button data-square="8"></button></td>
+            <td><button data-square="9"></button></td>
+          </tr>
+        </tbody>
+      </table>
+
     </body>
 </html
