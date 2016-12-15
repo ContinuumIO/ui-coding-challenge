@@ -1,16 +1,17 @@
 var webpack = require("webpack");
 var path = require("path");
+var autoprefixer = require('autoprefixer');
 
 // Ignore Typescript specification files
 var ignore = new webpack.IgnorePlugin(/^\.spec\.ts$/);
 
 var loaders = [
   // SCSS should be automatically transpiled
-  {test: /\.css$/, loader: "style!css"},
-  {test: /\.scss$/, loader: "style!css!resolve-url!sass"},
+  {test: /\.css$/, loader: "style!css?importLoaders=1!postcss"},
+  {test: /\.scss$/, loader: "style!css?importLoaders=1!postcss!resolve-url!sass"},
   // Support both Typescript and ES2015 Javascript
   {test: /\.js$/, loader: 'babel-loader',
-   exclude: /(node_modules|bower_components)/, query: {presets: ['es2015']}},
+   exclude: /(node_modules|bower_components)/, query: {presets: ['react-app']}},
   {test: /\.ts$/, loader: "ts-loader"},
 
   {test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader?name=font/[hash:6].[ext]"},
@@ -35,5 +36,17 @@ module.exports = [{
   resolve: {extensions: extensions},
   module: {loaders: loaders},
   sassLoader: {includePaths: includePaths},
+  postcss: function() {
+    return [
+      autoprefixer({
+        browsers: [
+          '>1%',
+          'last 4 versions',
+          'Firefox ESR',
+          'not ie < 9', // React doesn't support IE8 anyway
+        ]
+      }),
+    ];
+  },
   devtool: "source-map"
 }];

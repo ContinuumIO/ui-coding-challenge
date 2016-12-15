@@ -1,8 +1,10 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import './index.scss';
 
-import { alertHello } from './hello';
+const App = () => <h1>'Hi'</h1>;
 
-document.addEventListener('DOMContentLoaded', function(event) {
-  let name = window.prompt('Who would you like to greet?');
-  alertHello(name);
-});
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
