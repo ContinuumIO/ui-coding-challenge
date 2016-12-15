@@ -22,9 +22,13 @@ html {
 label {
   display: block;
 
+  span {
+    display: inline-block;
+    width: 1em;
+  }
+
   &.current_player:after {
-    content: '<';
-    color: red;
+    content: '\25C0';
     font-weight: bold;
   }
 }
