@@ -9,11 +9,11 @@
       <div id="players">
         <label for="player0_field">
           <span>X</span>
-          <input id="player0_field" placeholder="Enter name">
+          <input id="player0_field" placeholder="Enter name" maxlength="12">
         </label>
         <label for="player1_field">
           <span>O</span>
-          <input id="player1_field" placeholder="Enter name">
+          <input id="player1_field" placeholder="Enter name" maxlength="12">
         </label>
       </div>
       
@@ -24,7 +24,7 @@
         <button id="save_button" disabled>Save</button>
       </div>
 
-      <table id="board">
+      <table id="board" data-game-id="">
         <tbody>
           <tr>
             <td><button data-square="1"></button></td>
@@ -44,10 +44,19 @@
         </tbody>
       </table>
 
-      <div id="messages">
-        <h2></h2>
-        <p></p>
+      <div id="dialog_screen" class="hidden"></div>
 
+      <div id="messages" class="dialog hidden">
+        <h2>Testing</h2>
+        <p>Message goes here</p>
+        <button>Close</button>
+      </div>
+
+      <div id="game_list" class="dialog hidden">
+        <h2>Saved Games</h2>
+        <p>Click to load</p>
+        <ul></ul>
+        <button>Close</button>
       </div>
 
     </body>

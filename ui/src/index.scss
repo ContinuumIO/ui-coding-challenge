@@ -2,6 +2,7 @@ $hover_color: orange;
 $button_color: #444;
 $text_color: black;
 $board_color: white;
+$background_color: #cccccc;
 
 $border: 1px solid $text_color;
 
@@ -22,10 +23,12 @@ $font_family: 'Helvetica', sans-serif;
   text-align: center;
 }
 
-
+.hidden {
+  display: none;
+}
 
 html {
-  background-color: #cccccc;
+  background-color: $background_color;
   color: $text_color;
 
   font-family: $font_family;
@@ -34,9 +37,14 @@ html {
 }
 
 body {
-  margin: 1rem auto;
-  width: 4*$block_size;
+  margin: 2vmin auto;
+  width: 72vmin;
   text-align: center;
+}
+
+h2, p {
+  margin-top: 1vmin;
+  margin-bottom: 1vmin;
 }
 
 label {
@@ -56,8 +64,10 @@ label {
     width: 5vmin;
     display: inline-block;
   }
-  &.current_player:after {
-    content: '\25C0';
+  &.current_player, &.winner {
+    &:after {
+      content: '\25C0';
+    }
   }
 
   &.winner {
@@ -79,42 +89,47 @@ input {
 #players {
 }
 
+.control_buttons {
+  @extend .themed;
+  width: 13vmin;
+  background-color: $button_color;
+  color: white;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+
+  &:hover {
+    background-color: $hover_color;
+    &:disabled {
+      background-color: $button_color;
+    }
+  }
+
+  &[disabled] {
+    opacity: 0.25;
+  }
+}
+
 #controls {
   margin: 3vmin 0;
+  padding: 0;
   white-space: nowrap;
   text-align: center;
 
   button {
-    @extend .themed;
-    width: 14vmin;
-    background-color: $button_color;
-    color: white;
-
-    &:focus {
-      border: none;
-      outline: none;
-    }
-
-    &:hover {
-      background-color: $hover_color;
-      &:disabled {
-        background-color: $button_color;
-      }
-    }
-
-    &[disabled] {
-      opacity: 0.25;
-    }
+    @extend .control_buttons;
   }
 }
 
 #board {
+  background-color: $board_color;
   border-spacing: 0;
-  border-color: $text_color;
+  border: 1vmin solid $text_color;
   user-select: none;
   margin-left:auto; 
   margin-right:auto;
-  background-color: $board_color;
 
   tr:nth-child(1) td { border-bottom: $border; }
   tr:nth-child(2) td { border-bottom: $border; border-top: $border; }
@@ -133,7 +148,7 @@ input {
     border: none;
     margin: 0;
     display: block;
-
+    width: 100%;
     color: $text_color;  
     background-color: transparent;
 
@@ -154,4 +169,76 @@ input {
     }
 
   }
+}
+
+#dialog_screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $background_color;
+  opacity: 0.4;
+}
+
+.dialog {
+  background-color: $background_color;
+  border: 1vmin solid $text_color;
+  border-radius: 4vmin;
+  box-shadow: 0 0 1em $text_color;
+  position: absolute;
+  width: 50vmin;
+  left: 50%;
+  margin-left: -25vmin;
+  box-sizing: border-box;
+
+  button {
+    @extend .control_buttons;
+  }
+}
+
+#messages {
+  height: 30vmin;
+  top: 10vmin;  
+
+}
+
+#game_list {
+  height: 80vmin;
+  top: 10vmin;  
+
+  h2 { font-size: 6vmin; }
+  p { font-size: 3vmin; }
+  
+  li { 
+    font-size: 3vmin; 
+    padding: 1vmin 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: $text_color;
+    display: block;
+    padding: 0.5vmin 0;
+    border-bottom: 1px dotted $text_color;
+    &:hover {
+      background-color: $hover_color;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 2vmin 0;
+    height: 45vmin;
+    overflow-y: scroll;
+    overflow-x: auto;
+    border-top: $border;
+    border-bottom: $border;
+    background-color: $board_color;
+  }
+
 }

@@ -4,17 +4,20 @@ import './index.scss';
 
 document.addEventListener('DOMContentLoaded', function(event) {
 
-  let player0_field = document.getElementById('player0_field');
-  let player1_field = document.getElementById('player1_field');
-  let play_button   = document.getElementById('play_button');
-  let undo_button   = document.getElementById('undo_button');
-  let load_button   = document.getElementById('load_button');
-  let save_button   = document.getElementById('save_button');
-  let messages      = document.getElementById('messages');
-  let board         = document.getElementById('board');
-  let labels        = document.getElementsByTagName('label');
-  let squares       = board   .getElementsByTagName('button');
-  let name_fields   = [player0_field, player1_field];
+  let player0_field   = document.getElementById('player0_field');
+  let player1_field   = document.getElementById('player1_field');
+  let play_button     = document.getElementById('play_button');
+  let undo_button     = document.getElementById('undo_button');
+  let load_button     = document.getElementById('load_button');
+  let save_button     = document.getElementById('save_button');
+  let messages        = document.getElementById('messages');
+  let game_list       = document.getElementById('game_list');
+  let game_entry_list = game_list.getElementsByTagName('ul')[0];
+  let dialog_screen   = document.getElementById('dialog_screen');
+  let board           = document.getElementById('board');
+  let labels          = document.getElementsByTagName('label');
+  let squares         = board   .getElementsByTagName('button');
+  let name_fields     = [player0_field, player1_field];
 
   const symbols = 'XO'.split('');
   const api_url = '/api/games';
@@ -51,7 +54,22 @@ document.addEventListener('DOMContentLoaded', function(event) {
     save_button.disabled = new_state;
   }
 
+  function hide_dialogs() {
+    dialog_screen.classList.add('hidden');
+    messages.classList.add('hidden');
+    game_list.classList.add('hidden');
+  }
+
   function show_message(heading, body) {
+    if (!heading && !body) {
+      messages.classList.add('hidden');
+      dialog_screen.classList.add('hidden');
+    } else {
+      messages.classList.remove('hidden');
+      dialog_screen.classList.remove('hidden');
+    }
+    heading = heading ? heading : '';
+    body = body ? body : '';
     messages.getElementsByTagName('h2')[0].innerHTML = heading;
     messages.getElementsByTagName('p' )[0].innerHTML = body;
   }
@@ -129,7 +147,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
 
 
-
   function undo() {
     if (history.length) {
       let last_square = squares[history.pop()-1];
@@ -147,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     }
   }
   
-  let play = function(event) {
+  function play(event) {
     history = [];
     game_over = false;
     for (let square of squares) { 
@@ -158,38 +175,71 @@ document.addEventListener('DOMContentLoaded', function(event) {
     }
     clear_win_indicators();
     update_current_player_marker();
+    board.dataset.gameId = '';
     undo_button.disabled = true;
     save_button.disabled = true;
   }
 
-
-
   function load(event) {
-    let response = simple_REST("GET", api_url);
-    console.log(response);
+    const response = simple_REST("GET", api_url);
+    console.log('load', response)  
+    dialog_screen.classList.remove('hidden');
+    game_list.classList.remove('hidden');
+    game_entry_list.innerHTML = '';
+    for (let game of response.data) {
+      const entry = document.createElement("li");
+      const player0 = game.attributes.players[0];
+      const player1 = game.attributes.players[1];
+      entry.innerHTML = `<a href="#" data-game-id="${game.id}">${player0} vs. ${player1}</a>`;
+      game_entry_list.appendChild(entry);
+    }
+  }
+
+  function load_game(event) {
+    if (event.target.tagName=='A') {
+      const response = simple_REST("GET", `${api_url}/${event.target.dataset.gameId}`);
+      console.log('load_game', response);
+      hide_dialogs();
+      play();
+      const game_data = response.data.attributes;
+      name_fields[0].value = game_data.players[0];
+      name_fields[1].value = game_data.players[1];
+      board.dataset.gameId = response.data.id;
+      for (var i=0; i<9; i++) {
+        const value = game_data.board[i] ? parseInt(game_data.board[i]) : null;
+        console.log(i,value);
+        if (value != null) {
+          squares[i].dataset.player = value;
+          squares[i].disabled = true;
+          squares[i].innerHTML = symbols[ value ];
+        }
+      }
+      check_for_win();
+    }
+    return false;
   }
 
   function save(event) {
+    let player0 = name_fields[0].value=='' ? 'Unknown' : name_fields[0].value;
+    let player1 = name_fields[1].value=='' ? 'Unknown' : name_fields[1].value;
     let game_data = {
-      "players": [
-        name_fields[0].value, 
-        name_fields[1].value
-      ],
+      "players": [player0, player1],
       "board": get_current_board_data()
     }
     let response = simple_REST("POST", api_url, JSON.stringify(game_data));
     console.log(response);
+    board.dataset.gameId = response.id;
   }
 
-
-  
 
   board      .addEventListener('click', take_square);
   undo_button.addEventListener('click', undo);
   play_button.addEventListener('click', play);
   save_button.addEventListener('click', save);
   load_button.addEventListener('click', load);
-
+  messages.getElementsByTagName('button')[0].addEventListener('click', hide_dialogs);
+  game_list.getElementsByTagName('button')[0].addEventListener('click', hide_dialogs);
+  game_list.addEventListener('click', load_game);
   player0_field.focus();
   play();
 
