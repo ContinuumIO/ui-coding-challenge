@@ -197,18 +197,21 @@ input {
   }
 }
 
+h2 { font-size: 6vmin; }
+p { font-size: 3vmin; }
+
 #messages {
   height: 30vmin;
   top: 10vmin;  
-
+  p {
+    margin: 1vmin 0 2vmin;
+  }
 }
 
 #game_list {
   height: 80vmin;
   top: 10vmin;  
 
-  h2 { font-size: 6vmin; }
-  p { font-size: 3vmin; }
   
   li { 
     font-size: 3vmin; 

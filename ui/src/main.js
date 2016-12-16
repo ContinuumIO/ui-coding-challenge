@@ -68,10 +68,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
       messages.classList.remove('hidden');
       dialog_screen.classList.remove('hidden');
     }
-    heading = heading ? heading : '';
-    body = body ? body : '';
-    messages.getElementsByTagName('h2')[0].innerHTML = heading;
-    messages.getElementsByTagName('p' )[0].innerHTML = body;
+    messages.getElementsByTagName('h2')[0].innerHTML = heading ? heading : '';
+    messages.getElementsByTagName('p' )[0].innerHTML = body ? body : '';
   }
 
   function clear_win_indicators() {
@@ -86,8 +84,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
     for (let position of game_over) { squares[position].classList.add('winner'); }
     for (let square of squares) { square.disabled = true; }
     save_button.disabled = false;
-    labels[winner.dataset.player].className='winner';
-    show_message('Win!', name_fields[winner.dataset.player].value);
+    const playerNo = winner.dataset.player;
+    labels[playerNo].className='winner';
+    show_message(`${symbols[playerNo]} Wins!`, name_fields[playerNo].value);
   }
 
   let take_square = function(event) {
@@ -180,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     save_button.disabled = true;
   }
 
-  function load(event) {
+  function load_list(event) {
     const response = simple_REST("GET", api_url);
     console.log('load', response)  
     dialog_screen.classList.remove('hidden');
@@ -220,13 +219,14 @@ document.addEventListener('DOMContentLoaded', function(event) {
   }
 
   function save(event) {
-    let player0 = name_fields[0].value=='' ? 'Unknown' : name_fields[0].value;
-    let player1 = name_fields[1].value=='' ? 'Unknown' : name_fields[1].value;
-    let game_data = {
+    const player0 = name_fields[0].value=='' ? 'Unknown' : name_fields[0].value;
+    const player1 = name_fields[1].value=='' ? 'Unknown' : name_fields[1].value;
+    const game_id = board.dataset.gameId;
+    const game_data = {
       "players": [player0, player1],
       "board": get_current_board_data()
     }
-    let response = simple_REST("POST", api_url, JSON.stringify(game_data));
+    const response = simple_REST("POST", `${api_url}/${game_id}`, JSON.stringify(game_data));
     console.log(response);
     board.dataset.gameId = response.id;
   }
@@ -236,10 +236,11 @@ document.addEventListener('DOMContentLoaded', function(event) {
   undo_button.addEventListener('click', undo);
   play_button.addEventListener('click', play);
   save_button.addEventListener('click', save);
-  load_button.addEventListener('click', load);
-  messages.getElementsByTagName('button')[0].addEventListener('click', hide_dialogs);
+  load_button.addEventListener('click', load_list);
+  game_list  .addEventListener('click', load_game);
+  messages .getElementsByTagName('button')[0].addEventListener('click', hide_dialogs);
   game_list.getElementsByTagName('button')[0].addEventListener('click', hide_dialogs);
-  game_list.addEventListener('click', load_game);
+  
   player0_field.focus();
   play();
 
