@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { getWinner } from '../helpers/game';
 import '../styles/LeaderBoard.scss';
 
@@ -36,7 +36,7 @@ const LeaderBoard = ({ games = [] }) => {
         {
           leadersArray.map((leader, i) => {
             return (
-              <div key={i} className="leader">
+              <div key={leader.name} className="leader">
                 <div>{leader.name}</div>
                 <div>{leader.wins}</div>
               </div>
@@ -46,6 +46,10 @@ const LeaderBoard = ({ games = [] }) => {
       </div>
     </div>
   );
+};
+
+LeaderBoard.propTypes = {
+  games: PropTypes.array
 };
 
 export default LeaderBoard;

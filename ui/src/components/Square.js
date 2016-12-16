@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import '../styles/Square.scss';
 
-const Square = ({fill, onClick, winner, children}) => {
+const Square = ({onClick, winner, children}) => {
   return (
     <div
       onClick={onClick}
@@ -11,6 +11,10 @@ const Square = ({fill, onClick, winner, children}) => {
       </div>
     </div>
   );
+};
+
+Square.propTypes = {
+  onClick: PropTypes.func.isRequired
 };
 
 export default Square;

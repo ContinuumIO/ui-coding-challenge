@@ -177,8 +177,6 @@ class App extends Component {
           games={this.state.games}
         />
       );
-
-      return null;
     }
   }
 
@@ -217,7 +215,7 @@ class App extends Component {
           transitionEnterTimeout={2000}
           transitionLeaveTimeout={300}
         >
-          {this.state.currentGame && this.renderWinnerBanner()}
+          {this.state.currentGame ? this.renderWinnerBanner() : null}
         </ReactCSSTransitionGroup>
 
         <ReactCSSTransitionGroup

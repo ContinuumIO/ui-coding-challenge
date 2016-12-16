@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import '../styles/WinningLine.scss';
 
 const WinningLine = (props) => {
@@ -34,6 +34,10 @@ const WinningLine = (props) => {
       <div className="fill"></div>
     </div>
   );
+};
+
+WinningLine.propTypes = {
+  path: PropTypes.string
 };
 
 export default WinningLine;

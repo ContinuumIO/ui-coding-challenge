@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Square from './Square';
 import Button from './Button';
 import Players from './Players';
@@ -7,7 +7,16 @@ import GamePieceO from './GamePieceO';
 import WinningLine from './WinningLine';
 import '../styles/Game.scss';
 
-class GameBoard extends Component {
+class Game extends Component {
+  static propTypes = {
+    draw: PropTypes.bool,
+    players: PropTypes.array,
+    board: PropTypes.array.isRequired,
+    onNewGameClick: PropTypes.func.isRequired,
+    winningSquares: PropTypes.array,
+    onSquareClick: PropTypes.func.isRequired
+  }
+
   // Return what should populate the square, if anything
   gamePiece(square) {
     let piece;
@@ -68,4 +77,4 @@ class GameBoard extends Component {
   }
 }
 
-export default GameBoard;
+export default Game;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import '../styles/Player.scss';
 
 const Player = (props) => {
@@ -8,6 +8,12 @@ const Player = (props) => {
       <div className="name">{props.name}</div>
     </div>
   );
+};
+
+Player.propTypes = {
+  isWinner: PropTypes.bool,
+  isCurrent: PropTypes.bool,
+  name: PropTypes.string
 };
 
 export default Player;
