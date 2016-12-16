@@ -2,7 +2,9 @@
   "name": "continuum-ui-coding-challenge",
   "author": "Continuum Analytics",
   "dependencies": {
+    "axios": "^0.15.3",
     "react": "^15.4.1",
+    "react-addons-css-transition-group": "^15.4.1",
     "react-dom": "^15.4.1"
   },
   "description": "Coding challenge for Continuum Analytics UI development",
@@ -34,13 +36,13 @@
     "typescript": "^2.0.3",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2",
-    "webpack-node-externals": "^1.5.4",
+    "webpack-node-externals": "^1.5.4"
   },
   "license": "BSD-3-Clause",
   "scripts": {
     "build": "NODE_ENV=development npm run webpack",
     "tsc": "tsc --project ui/src",
-    "watch": "npm run webpack -- --watch",
+    "watch": "NODE_ENV=development npm run webpack -- --watch",
     "webpack": "parallel-webpack --config=./webpack.config.js --no-stats"
   },
   "version": "1.0.0"
