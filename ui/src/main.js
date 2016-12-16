@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
   let player0_field   = document.getElementById('player0_field');
   let player1_field   = document.getElementById('player1_field');
-  let play_button     = document.getElementById('play_button');
+  let reset_button    = document.getElementById('reset_button');
   let undo_button     = document.getElementById('undo_button');
   let load_button     = document.getElementById('load_button');
   let save_button     = document.getElementById('save_button');
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
   const symbols = 'XO'.split('');
   const api_url = '/api/games';
-  let history;
+  let log;
   let game_over;
 
 
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     });
   }
 
-  function current_player() { return history.length%2; }
+  function current_player() { return log.length%2; }
 
   function update_current_player_marker() {
     for (let el of labels) { el.classList.remove('current_player'); }
@@ -49,9 +49,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
   }
 
   function update_button_status() {
-    let new_state = history.length ? false : true;
-    undo_button.disabled = new_state; 
-    save_button.disabled = new_state;
+    let new_state = log.length ? false : true;
+    undo_button.disabled  = new_state; 
+    save_button.disabled  = new_state;
+    reset_button.disabled = new_state;
   }
 
   function hide_dialogs() {
@@ -95,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
       target.disabled = true;
       target.innerHTML = symbols[ current_player() ];
       target.dataset.player = current_player();
-      history.push( target.dataset.square );
+      log.push( target.dataset.square );
       update_button_status()
       check_for_win();
     }
@@ -137,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     if (!game_over) { check_set(diagonals) }
     
     if (game_over) { show_winner(); } 
-    else if (history.length==9) {
+    else if (log.length==9) {
       show_message('Game Over', 'Nobody wins');
     }
     update_current_player_marker();
@@ -147,8 +148,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
 
   function undo() {
-    if (history.length) {
-      let last_square = squares[history.pop()-1];
+    if (log.length) {
+      let last_square = squares[log.pop()-1];
       last_square.disabled = false;
       last_square.innerHTML = '';
       last_square.dataset.player = '';
@@ -164,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
   }
   
   function play(event) {
-    history = [];
+    log = [];
     game_over = false;
     for (let square of squares) { 
       square.classList.remove('winner');
@@ -203,16 +204,17 @@ document.addEventListener('DOMContentLoaded', function(event) {
       const game_data = response.data.attributes;
       name_fields[0].value = game_data.players[0];
       name_fields[1].value = game_data.players[1];
+      log = game_data.log;
       board.dataset.gameId = response.data.id;
       for (var i=0; i<9; i++) {
         const value = game_data.board[i] ? parseInt(game_data.board[i]) : null;
-        console.log(i,value);
         if (value != null) {
           squares[i].dataset.player = value;
           squares[i].disabled = true;
           squares[i].innerHTML = symbols[ value ];
         }
       }
+      update_button_status();
       check_for_win();
     }
     return false;
@@ -224,17 +226,19 @@ document.addEventListener('DOMContentLoaded', function(event) {
     const game_id = board.dataset.gameId;
     const game_data = {
       "players": [player0, player1],
-      "board": get_current_board_data()
+      "board": get_current_board_data(),
+      "log": log
     }
     const response = simple_REST("POST", `${api_url}/${game_id}`, JSON.stringify(game_data));
-    console.log(response);
     board.dataset.gameId = response.id;
+    load_button.disabled = false;
+    console.log('save', response);
   }
 
 
   board      .addEventListener('click', take_square);
   undo_button.addEventListener('click', undo);
-  play_button.addEventListener('click', play);
+  reset_button.addEventListener('click', play);
   save_button.addEventListener('click', save);
   load_button.addEventListener('click', load_list);
   game_list  .addEventListener('click', load_game);
