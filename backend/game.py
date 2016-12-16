@@ -21,11 +21,12 @@ class GameRegistry:
 
 
 class Game:
-    def __init__(self, players, board, _id=None, registry=None):
+    def __init__(self, players, board, log, _id=None, registry=None):
         self._id = _id or uuid.uuid4().hex
         self._registry = registry or _REGISTRY
         self.players = players
         self.board = board
+        self.log = log
 
     def to_json(self):
         return {
@@ -34,6 +35,7 @@ class Game:
             "attributes": {
                 "players": self.players,
                 "board": self.board,
+                "log": self.log,
             }
         }
 

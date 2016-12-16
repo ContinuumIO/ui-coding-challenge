@@ -1,6 +1,247 @@
+$hover_color: orange;
+$button_color: #444;
+$text_color: black;
+$board_color: white;
+$background_color: #cccccc;
+
+$border: 1px solid $text_color;
+
+$block_size: 18vmin;
+$font_family: 'Helvetica', sans-serif;
+
+
+.block {
+  width: $block_size;
+  height: $block_size;  
+}
+
+.themed {
+  font-size: 3vmin;
+  border: none;
+  border-radius: 4vmin;
+  height: 8vmin;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
 html {
-  background-color: #EFEFEF;
-  color: #222;
-  font-size: 1em;
+  background-color: $background_color;
+  color: $text_color;
+
+  font-family: $font_family;
+  font-size: 5vmin;
   line-height: 1.4;
+}
+
+body {
+  margin: 2vmin auto;
+  width: 72vmin;
+  text-align: center;
+}
+
+h2, p {
+  margin-top: 1vmin;
+  margin-bottom: 1vmin;
+}
+
+label {
+  display: block;
+  width: 100%;
+  display: inline-block;
+  padding: 1vmin 0;
+
+  span {
+    display: inline-block;
+    width: 5vmin;
+  }
+
+  &:after {
+    content: ' ';
+    font-weight: bold;
+    width: 5vmin;
+    display: inline-block;
+  }
+  &.current_player, &.winner {
+    &:after {
+      content: '\25C0';
+    }
+  }
+
+  &.winner {
+    background-color: $hover_color;
+  }
+}
+
+input {
+  @extend .themed;
+  width: 75%;
+  font-size: 5vmin;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}
+
+#players {
+}
+
+.control_buttons {
+  @extend .themed;
+  width: 13vmin;
+  background-color: $button_color;
+  color: white;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+
+  &:hover {
+    background-color: $hover_color;
+    &:disabled {
+      background-color: $button_color;
+    }
+  }
+
+  &[disabled] {
+    opacity: 0.25;
+  }
+}
+
+#controls {
+  margin: 3vmin 0;
+  padding: 0;
+  white-space: nowrap;
+  text-align: center;
+
+  button {
+    @extend .control_buttons;
+  }
+}
+
+#board {
+  background-color: $board_color;
+  border-spacing: 0;
+  border: 1vmin solid $text_color;
+  user-select: none;
+  margin-left:auto; 
+  margin-right:auto;
+
+  tr:nth-child(1) td { border-bottom: $border; }
+  tr:nth-child(2) td { border-bottom: $border; border-top: $border; }
+  tr:nth-child(3) td { border-top: $border; }
+
+  tr td:nth-child(1) { border-right: $border; }
+  tr td:nth-child(2) { border-left: $border; border-right: $border; }
+  tr td:nth-child(3) { border-left: $border; }
+
+  td {
+    padding: 0;
+    @extend .block;
+  }
+
+  button {
+    border: none;
+    margin: 0;
+    display: block;
+    width: 100%;
+    color: $text_color;  
+    background-color: transparent;
+
+    font-size: $block_size;
+    text-align: center;
+    line-height: 0.25*$block_size;
+
+    @extend .block;
+
+    &.winner {
+      &, &[disabled]:hover {
+        background-color: $hover_color;
+      }
+    }
+
+    &:not([disabled]):hover {
+      background-color: $hover_color;
+    }
+
+  }
+}
+
+#dialog_screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $background_color;
+  opacity: 0.4;
+}
+
+.dialog {
+  background-color: $background_color;
+  border: 1vmin solid $text_color;
+  border-radius: 4vmin;
+  box-shadow: 0 0 1em $text_color;
+  position: absolute;
+  width: 50vmin;
+  left: 50%;
+  margin-left: -25vmin;
+  box-sizing: border-box;
+
+  button {
+    @extend .control_buttons;
+  }
+}
+
+h2 { font-size: 6vmin; }
+p { font-size: 3vmin; }
+
+#messages {
+  height: 30vmin;
+  top: 10vmin;  
+  p {
+    margin: 1vmin 0 2vmin;
+  }
+}
+
+#game_list {
+  height: 80vmin;
+  top: 10vmin;  
+
+  
+  li { 
+    font-size: 3vmin; 
+    padding: 1vmin 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: $text_color;
+    display: block;
+    padding: 0.5vmin 0;
+    border-bottom: 1px dotted $text_color;
+    &:hover {
+      background-color: $hover_color;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 2vmin 0;
+    height: 45vmin;
+    overflow-y: scroll;
+    overflow-x: auto;
+    border-top: $border;
+    border-bottom: $border;
+    background-color: $board_color;
+  }
+
 }
