@@ -16,7 +16,27 @@ class App extends Component {
   state = {
     currentGame: null,
     previousPlayers: [],
-    saveError: false
+    saveError: false,
+    games: []
+  }
+
+  componentDidMount() {
+    axios.get('/api/games')
+      .then(
+        resp => {
+          this.setState({
+            ...this.state,
+            games: resp.data.data
+          });
+        },
+
+        () => {
+          this.setState({
+            ...this.state,
+            saveError: true
+          });
+        }
+    );
   }
 
   // Update the game on the server
@@ -25,11 +45,16 @@ class App extends Component {
       return;
     }
 
+    const otherGames = this.state.games.filter(otherGame => {
+      return otherGame._id !== game._id;
+    });
+
     axios.post(`/api/games/${game._id}`, game)
       .then(
         resp => {
           this.setState({
             ...this.state,
+            games: [...otherGames, resp.data],
             saveError: false
           });
         },
@@ -77,6 +102,7 @@ class App extends Component {
         resp => {
           this.setState({
             ...this.state,
+            games: [...this.state.games, resp.data],
             currentGame: {
               ...this.state.currentGame,
               _id: resp.data.id
@@ -145,8 +171,14 @@ class App extends Component {
     // Only show our <NewGame /> component if there is not a current game
     if (!this.state.currentGame) {
       return (
-        <NewGame players={this.state.previousPlayers} onStartGame={this.handleStartGame} />
+        <NewGame
+          players={this.state.previousPlayers}
+          onStartGame={this.handleStartGame}
+          games={this.state.games}
+        />
       );
+
+      return null;
     }
   }
 
@@ -189,6 +221,17 @@ class App extends Component {
         </ReactCSSTransitionGroup>
 
         <ReactCSSTransitionGroup
+          className="new-game-container"
+          transitionName="new-game"
+          transitionAppear={true}
+          transitionAppearTimeout={300}
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={300}
+        >
+          {this.renderNewGame()}
+        </ReactCSSTransitionGroup>
+
+        <ReactCSSTransitionGroup
           transitionName="game"
           transitionAppear={true}
           transitionEnterTimeout={500}
@@ -196,15 +239,6 @@ class App extends Component {
           transitionLeaveTimeout={500}
         >
           {this.renderGame()}
-        </ReactCSSTransitionGroup>
-        <ReactCSSTransitionGroup
-          transitionName="new-game"
-          transitionAppear={true}
-          transitionAppearTimeout={300}
-          transitionEnterTimeout={300}
-          transitionLeaveTimeout={500}
-        >
-          {this.renderNewGame()}
         </ReactCSSTransitionGroup>
       </div>
     );

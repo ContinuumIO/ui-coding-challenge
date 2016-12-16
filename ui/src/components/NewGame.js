@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Button from './Button';
+import LeaderBoard from './LeaderBoard';
 import '../styles/NewGame.scss';
 
 class NewGame extends Component {
@@ -66,6 +67,8 @@ class NewGame extends Component {
             Start Game
           </Button>
         </form>
+
+        {this.props.games.length ? <LeaderBoard games={this.props.games} /> : null}
       </div>
     );
   }
