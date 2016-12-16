@@ -5,65 +5,18 @@ import NewGame from './NewGame';
 import WinnerBanner from './WinnerBanner';
 import axios from 'axios';
 import '../styles/App.scss';
+import {
+  checkForWinner,
+  getWinner,
+  checkForDraw,
+  getCurrentPlayer
+} from '../helpers/game';
 
 class App extends Component {
   state = {
     currentGame: null,
     previousPlayers: [],
     saveError: false
-  }
-
-  componentDidMount() {
-    axios.get('/api/games')
-      .then(resp => console.log(resp.data));
-  }
-
-  // Return a count of how many moves a player has made
-  getMovesCount(player) {
-    return this.state.currentGame.board.filter(move => move === player).length;
-  }
-
-  // Calculate the currentPlayer based on the gameBoard
-  getCurrentPlayer() {
-    const winner = this.getWinner();
-
-    if (winner !== false) {
-      return winner;
-    }
-
-    // If we have reached a draw, there is no current player
-    if (this.checkForDraw()) {
-      return false;
-    }
-
-    const xMoves = this.getMovesCount(0);
-    const oMoves = this.getMovesCount(1);
-
-    // Since X goes first if the players
-    // have equal moves, X, or 0,  is up next
-    return xMoves === oMoves ? 0 : 1;
-  }
-
-  // If all spaces on the board have been
-  // played and there is no winner, we have a draw.
-  // Could make this a bit more sophisticated
-  checkForDraw() {
-    const board = this.state.currentGame.board;
-    return !this.checkForWinner() && board.filter(square => square !== null).length === board.length;
-  }
-
-  // Calculate a winner based on the game board
-  getWinner() {
-    if (!this.checkForWinner()) {
-      return false;
-    }
-
-    const xMoves = this.getMovesCount(0);
-    const oMoves = this.getMovesCount(1);
-
-    // Since X goes first if the players have equal moves
-    // and there is a winner, O should be declared the winner
-    return xMoves === oMoves ? 1 : 0;
   }
 
   // Update the game on the server
@@ -93,7 +46,7 @@ class App extends Component {
   // When a square is clicked, update the game board
   handleSquareClick = (i) => {
     const { board } = this.state.currentGame;
-    const winner = this.checkForWinner();
+    const winner = checkForWinner(board);
 
     // If the space is already occupied, or there is a winner, just return
     if (board[i] !== null || winner) {
@@ -102,7 +55,7 @@ class App extends Component {
 
     // create a new copy of board
     const nextBoard = board.slice();
-    nextBoard[i] = this.getCurrentPlayer();
+    nextBoard[i] = getCurrentPlayer(board);
 
     const nextState = {
       ...this.state,
@@ -114,34 +67,6 @@ class App extends Component {
 
     this.handleUpdateGame(nextState.currentGame);
     this.setState(nextState);
-  }
-
-  // Check for existence of winning combinations on the board.
-  // Bonus: return winning combinations found so we can display to the user
-  checkForWinner() {
-    if (!this.state.currentGame) {
-      return false;
-    }
-
-    const winningCombinations = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6]
-    ];
-
-    return winningCombinations.filter(combo => {
-      const { board } = this.state.currentGame;
-      const space1 = board[combo[0]];
-      const space2 = board[combo[1]];
-      const space3 = board[combo[2]];
-
-      return space1 !== null && space1 === space2 && space1 === space3;
-    })[0];
   }
 
   // Save a new game to the server, update state on completion
@@ -199,15 +124,17 @@ class App extends Component {
 
   renderGame() {
     if (this.state.currentGame) {
+      const { board, players } = this.state.currentGame;
+
       return (
         <Game
-          winner={this.getWinner()}
-          draw={this.checkForDraw()}
-          currentPlayer={this.getCurrentPlayer()}
-          players={this.state.currentGame.players}
-          board={this.state.currentGame.board}
+          winner={getWinner(board)}
+          draw={checkForDraw(board)}
+          currentPlayer={getCurrentPlayer(board)}
+          players={players}
+          board={board}
           onNewGameClick={this.handleNewGameClick}
-          winningSquares={this.checkForWinner() || []}
+          winningSquares={checkForWinner(board) || []}
           onSquareClick={this.handleSquareClick}
         />
       );
@@ -225,10 +152,11 @@ class App extends Component {
 
   // Show our <WinnerBanner />
   renderWinnerBanner() {
+    const { board } = this.state.currentGame;
     let message = 'Great Job!';
-    let winner = this.getWinner();
+    let winner = getWinner(this.state.currentGame.board);
 
-    if (winner === false && this.checkForDraw()) {
+    if (winner === false && checkForDraw(board)) {
       winner = 'The Cat';
       message = 'Whomp Whomp!';
     } else {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Button from './Button';
 import '../styles/WinnerBanner.scss';
 
@@ -17,6 +17,13 @@ const WinnerBanner = (props) => {
       </Button>
     </div>
   );
+};
+
+WinnerBanner.propTypes = {
+  winner: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
+  backgroundColor: PropTypes.string,
+  onPlayAgain: PropTypes.func.isRequired
 };
 
 export default WinnerBanner;

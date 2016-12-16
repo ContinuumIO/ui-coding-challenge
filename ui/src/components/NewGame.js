@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Button from './Button';
 import '../styles/NewGame.scss';
 
@@ -6,6 +6,11 @@ class NewGame extends Component {
   state = {
     player1: '',
     player2: ''
+  }
+
+  static propTypes = {
+    players: PropTypes.array.isRequired,
+    onStartGame: PropTypes.func.isRequired
   }
 
   componentDidMount() {
