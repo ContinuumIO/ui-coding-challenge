@@ -4,23 +4,13 @@ import '../styles/NewGame.scss';
 
 class NewGame extends Component {
   state = {
-    player1: '',
-    player2: ''
+    player1: this.props.players[0] || '',
+    player2: this.props.players[1] || ''
   }
 
   static propTypes = {
     players: PropTypes.array.isRequired,
     onStartGame: PropTypes.func.isRequired
-  }
-
-  componentDidMount() {
-    const { players } = this.props;
-
-    this.setState({
-      ...this.state,
-      player1: players[0] || '',
-      player2: players[1] || ''
-    });
   }
 
   handleSubmit = (event) => {

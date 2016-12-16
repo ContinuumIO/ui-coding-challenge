@@ -1,10 +1,10 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import NewGame from '../components/NewGame';
 
 describe('Button', () => {
   it('sets state with players passed to it', () => {
-    const newGame = mount(
+    const newGame = shallow(
       <NewGame players={['Kermit', 'Gonzo']} onStartGame={() => {}}/>
     );
 
@@ -18,12 +18,11 @@ describe('Button', () => {
       players = submittedPlayers;
     };
 
-    const newGame = mount(
+    const newGame = shallow(
       <NewGame players={['Kermit', 'Gonzo']} onStartGame={onStartGame}/>
     );
 
-    newGame.find('form').simulate('submit');
-    expect(players[0]).toEqual('Kermit');
-    expect(players[1]).toEqual('Gonzo');
+    newGame.find('form').simulate('submit', { preventDefault: () => {} });
+    expect(players).toEqual(['Kermit', 'Gonzo']);
   });
 });
