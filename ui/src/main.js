@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
   let load_button   = document.getElementById('load_button');
   let save_button   = document.getElementById('save_button');
 
+  let messages      = document.getElementById('messages');
   let board         = document.getElementById('board');
   let squares       = board.getElementsByTagName('button')
 
@@ -24,8 +25,12 @@ document.addEventListener('DOMContentLoaded', function(event) {
   const symbols = 'XO'.split('');
   let game_over;
 
+
   let set_all_squares_disabled = function(state) {
-    for (let square of squares) { square.disabled = state; square.dataset.player = ''; }
+    for (let square of squares) { 
+      square.disabled       = state; 
+      square.dataset.player = ''; 
+    }
   }
   
   function check_for_win() {
@@ -67,10 +72,35 @@ document.addEventListener('DOMContentLoaded', function(event) {
     if (!game_over) { check_set(columns) }
     if (!game_over) { check_set(diagonals) }
     if (game_over) { show_winner(); }
+    
+    if (history.length==9) {
+      show_message('Game Over', 'Nobody wins');
+      save_button.disabled = false;
+    }
+  }
+
+  function show_message(heading, body) {
+    messages.getElementsByTagName('h2')[0].innerHTML = heading;
+    messages.getElementsByTagName('p' )[0].innerHTML = body;
   }
 
   function show_winner() {
-    alert('won', game_over);
+    const winner = squares[ game_over[0] ];
+
+    for (let position of game_over) {
+      squares[position].classList.add('winner');
+    }
+
+    for (let square of squares) { square.disabled = true; }
+
+    console.log(labels);
+    for (let label of labels) { label.classList.remove('current_player'); }
+
+    labels[ winner.dataset.player ].classList.add('winner');
+
+    save_button.disabled = false;
+
+    show_message('Win!', name_fields[winner.dataset.player].value);
   }
 
   function update_current_player_marker() {
@@ -81,11 +111,17 @@ document.addEventListener('DOMContentLoaded', function(event) {
   function undo() {
     if (history.length) {
       // console.log('undo');
-      let last_square = squares[ history.pop()-1 ];
+      let last_square = squares[ history.pop()-1 ]; // history values are 1-indexed
       last_square.disabled = false;
       last_square.innerHTML = '';
       last_square.dataset.player = '';
       if (!history.length) { undo_button.disabled = true; }
+
+      for (let square of squares) { 
+        square.classList.remove('winner'); 
+      }
+      show_message('', '');
+
       update_current_player_marker();
       // console.log(history);
     }
@@ -93,10 +129,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
   
   let take_square = function(event) {
     let target = event.target;
-    console.log(target.tagName);
-    if (target.tagName=="TD") { target=target.getElementsByTagName('button')[0]; }
-    if (target.tagName=="SPAN") { target=target.parentElement; }
-    console.log(">>>>>", target.tagName);
     if (!target.disabled) {
       target.disabled = true;
       target.innerHTML = symbols[ history.length%2 ];
@@ -134,6 +166,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     started = false;
     history = [];
     game_over = false;
+    load_button.disabled = false;
     set_all_squares_disabled(true);
     player0_field.focus();
 
@@ -142,9 +175,38 @@ document.addEventListener('DOMContentLoaded', function(event) {
     players.dataset.boardNumber = board_number;
   }
 
+  function load(event) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "/api/games", false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    var response = JSON.parse(xhttp.responseText);
+    console.log(response);
+  }
+
+  function save(event) {
+    let game_data = {
+      "players": ["Alice", "Bhopal"],
+      "board": [null, null,    1,
+                   0, null,    1,
+                null, null, null]
+    }
+    let content = JSON.stringify(game_data);
+    console.log(content);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/api/games", false);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send( content );
+    let response = JSON.parse(xhr.responseText);
+    console.log(response);
+
+  }
 
   undo_button.addEventListener('click', undo);
   play_button.addEventListener('click', play);
+  save_button.addEventListener('click', save);
+  load_button.addEventListener('click', load);
+
   for (let field of name_fields) {
     field.addEventListener('keyup', check_names);
   }
