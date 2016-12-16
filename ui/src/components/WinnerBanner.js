@@ -5,7 +5,7 @@ import '../styles/WinnerBanner.scss';
 const WinnerBanner = (props) => {
   return (
     <div className="winner-banner">
-      <h1>Winner!</h1>
+      <h1>WINNER!</h1>
       <h2>{props.winner}</h2>
       <div className="banner-container">
         <div className="angle left"></div>
