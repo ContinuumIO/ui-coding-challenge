@@ -1,3 +1,5 @@
+@import './colors';
+
 .player {
   display: flex;
   font-size: 25px;
@@ -14,14 +16,14 @@
     height: 15px;
     width: 15px;
     border-radius: 50%;
-    background: #b8bca7;
+    background: $background-contrast;
     margin-right: 10px;
     transition: background 0.25s ease;
   }
 
   .is-current {
     &.active {
-      background: #4CAF50;
+      background: $active;
     }
   }
 }

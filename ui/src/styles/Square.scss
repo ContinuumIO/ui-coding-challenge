@@ -1,10 +1,9 @@
+@import './colors';
+
 .square {
   width: calc(100% / 3 - 16px);
-  border: 8px solid #b8bca7;
+  border: 8px solid $background-contrast;
   font-size: 165px;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
   position: relative;
 
   .fill {

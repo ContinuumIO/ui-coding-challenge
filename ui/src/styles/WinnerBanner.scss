@@ -1,7 +1,9 @@
+@import './colors';
+
 .winner-banner {
   width: 100%;
   position: absolute;
-  background: #538A95;
+  background: $primary-button;
   z-index: 1;
   top: 0;
   box-sizing: border-box;
@@ -34,7 +36,7 @@
   .banner {
     width: 60%;
     height: 100px;
-    background: #67B79E;
+    background:  $banner;
     position: absolute;
     margin: 0 auto;
     left: 0;
@@ -52,7 +54,7 @@
     top: 25px;
     height: 0px;
     width: 25%;
-    border: 50px solid #569682;
+    border: 50px solid darken($banner, 12%);
     border-left-color:transparent;
     box-sizing: border-box;
     position: absolute;

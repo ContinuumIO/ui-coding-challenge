@@ -1,5 +1,7 @@
+@import './colors';
+
 .button {
-  background: cadetblue;
+  background: $primary-button;
   border: none;
   height: 50px;
   width: 100%;
@@ -12,8 +14,8 @@
   border-radius: 3px;
 
   &:disabled {
-    background: #b8bca7;
-    color: #a2a496;
+    background: $background-contrast;
+    color: darken($background-contrast, 35%);
     cursor: not-allowed;
   }
 }
