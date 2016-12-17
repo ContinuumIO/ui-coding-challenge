@@ -31,7 +31,7 @@ const LeaderBoard = ({ games = [] }) => {
 
   return (
     <div className="leader-board">
-      <h1>Leader Board</h1>
+      <h1>Leaderboard</h1>
       <div className="leaders">
         {
           leadersArray.map((leader, i) => {
