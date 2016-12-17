@@ -5,7 +5,11 @@ const WinningLine = (props) => {
   const horizontal = {
     transform: 'rotate(90deg)',
     transformOrigin: 'left top',
-    right: 0
+    right: '-3%'
+  };
+
+  const vertical = {
+    top: '0'
   };
 
   const diagonal = {
@@ -18,9 +22,9 @@ const WinningLine = (props) => {
     '0,1,2': { ...horizontal, top: '14%' },
     '3,4,5': { ...horizontal, top: '48%' },
     '6,7,8': { ...horizontal, top: '83%' },
-    '0,3,6': { left: '13%' },
-    '1,4,7': { left: '47%' },
-    '2,5,8': { left: '80%' },
+    '0,3,6': { ...vertical, left: '13%' },
+    '1,4,7': { ...vertical, left: '48%' },
+    '2,5,8': { ...vertical, left: '83%' },
     '0,4,8': { ...diagonal, transform: 'rotate(-45deg)' },
     '2,4,6': { ...diagonal, transform: 'rotate(45deg)' }
   };
