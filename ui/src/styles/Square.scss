@@ -1,0 +1,35 @@
+@import './colors';
+
+.square {
+  width: calc(100% / 3 - 11px);
+  border: 8px solid $background-contrast;
+  font-size: 165px;
+  position: relative;
+
+  .fill {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+  }
+
+  &:before {
+  	content: "";
+  	display: block;
+  	padding-top: 100%;
+  }
+
+  &.winner .fill {
+    animation: grow 1s infinite ease;
+    animation-delay: 0.8s;
+  }
+
+  @keyframes grow {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+}

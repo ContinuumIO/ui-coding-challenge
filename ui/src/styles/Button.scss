@@ -1,0 +1,21 @@
+@import './colors';
+
+.button {
+  background: $primary-button;
+  border: none;
+  height: 50px;
+  width: 100%;
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border-radius: 3px;
+
+  &:disabled {
+    background: $background-contrast;
+    color: darken($background-contrast, 35%);
+    cursor: not-allowed;
+  }
+}

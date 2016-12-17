@@ -1,0 +1,28 @@
+@import './colors';
+
+.winning-line {
+  position: absolute;
+  height: 100%;
+  width: 16px;
+  overflow: hidden;
+
+  .fill {
+    height: 100%;
+    width: 100%;
+    background: $purple;
+    transform: translateY(-110%);
+    animation: growY 0.25s linear;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes growY {
+    0% {
+      transform: translateY(-110%);
+    }
+
+    100% {
+      transform: translateY(0%);
+    }
+  }
+}

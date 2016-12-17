@@ -1,0 +1,49 @@
+@import './colors';
+
+.game-piece-x {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  .length {
+    width: 90%;
+    height: 15px;
+    overflow: hidden;
+    position: absolute;
+    top: 45%;
+    left: 7%;
+
+    &.one {
+      transform: rotate(45deg);
+    }
+
+    &.two {
+      transform: rotate(135deg);
+      .filler {
+        animation-delay: 0.2s
+      }
+    }
+  }
+
+  .filler {
+    background: $warm;
+    height: 100%;
+    width: 100%;
+    transform: translateX(-110%);
+    animation: growX 0.25s ease;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes growX {
+    0% {
+      transform: translateX(-110%);
+    }
+
+    100% {
+      transform: translateX(0%);
+    }
+  }
+}

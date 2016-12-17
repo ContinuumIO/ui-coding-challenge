@@ -1,0 +1,29 @@
+@import './colors';
+
+.player {
+  display: flex;
+  font-size: 25px;
+  font-weight: bold;
+  margin-right: 10px;
+  align-items: center;
+
+  .symbol {
+    margin-right: 10px;
+    font-weight: lighter;
+  }
+
+  .is-current {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background: $background-contrast;
+    margin-right: 10px;
+    transition: background 0.25s ease;
+  }
+
+  .is-current {
+    &.active {
+      background: $active;
+    }
+  }
+}
