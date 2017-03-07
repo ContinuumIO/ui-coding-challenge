@@ -3,4 +3,11 @@ html {
   color: #222;
   font-size: 1em;
   line-height: 1.4;
+  font-family: "Ubuntu", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+}
+
+#root {
+  min-width: 400px;
+  margin: auto;
+  text-align: center;
 }

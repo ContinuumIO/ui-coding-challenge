@@ -1,15 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Header from './Header/Header';
+import Board from './Board/Board';
+import Players from './Players/Players';
+import Game from './Game/Game';
+import './index.scss';
 
-class App extends Component {
+class App extends React.Component {
   componentDidMount() {
 
   }
   render() {
     return (
       <div className="App">
-        <p className="App-intro">
-          Hello, World
-        </p>
+        <Header />
+        <Players />
+        <Board />
+        <Game />
       </div>
     );
   }

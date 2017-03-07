@@ -1,0 +1,32 @@
+.board {
+  min-width: 400px;
+  margin-top: 30px;
+}
+.squareBttn {
+  height: 100px;
+  width: 100px;
+  font-size: 74px;
+  @media only screen and (min-width : 768px) and (max-width : 1024px) {
+    height: 150px;
+    width: 150px;
+    font-size: 122px;
+  }
+  @media only screen and (min-width : 1024px) {
+    height: 200px;
+    width: 200px;
+    font-size: 165px;
+  }
+  border: 1px solid #43b02a;
+  flex-direction: row;
+
+  &:hover, &:focus, &:active {
+    background-color: #43b02a;
+    outline: none;
+    border: none;
+  }
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}

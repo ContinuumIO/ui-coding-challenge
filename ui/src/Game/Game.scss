@@ -1,0 +1,25 @@
+.game {
+  visibility: hidden;
+  opacity: 0;
+  font-size: 1.5rem;
+  height: 0;
+  transition: height 3s, opacity 3s, ease 3s;
+
+  &.visible {
+    height: 100%;
+    visibility: visible;
+    opacity: 1.0;
+    transition: height 3s, opacity 3s, ease 3s;
+  }
+}
+
+.game-result {
+  visibility: hidden;
+  opacity: 0;
+
+  &.visible {
+    visibility: visible;
+    opacity: 1.0;
+    transition: opacity 3s, ease 3s;
+  }
+}
