@@ -3,7 +3,6 @@
   opacity: 0;
   font-size: 1.5rem;
   height: 0;
-  transition: height 3s, opacity 3s, ease 3s;
 
   &.visible {
     height: 100%;
@@ -11,9 +10,29 @@
     opacity: 1.0;
     transition: height 3s, opacity 3s, ease 3s;
   }
+
+  p {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    height: 100%;
+  }
 }
 
-.game-result {
+.game-turn {
+  max-height: 100%;
+  visibility: visible;
+  opacity: 1.0;
+
+  &.hidden {
+    visibility: hidden;
+    opacity: 0;
+    font-size: 0;
+    max-height: 0;
+    transition: height .3s, opacity .3s, ease .3s;
+  }
+}
+
+.game-result, .game-tie {
   visibility: hidden;
   opacity: 0;
 

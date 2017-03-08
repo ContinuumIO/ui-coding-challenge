@@ -6,26 +6,12 @@
   visibility: visible;
   opacity: 1.0;
   height: 100%;
-
+  transition: height .4s, opacity .3s, visibility .4s, ease .1s;
+  
   &.hidden {
     height: 0;
     visibility: hidden;
     opacity: 0;
-    transition: height .4s, opacity .3s, visibility .4s, ease .3s;
-  }
-}
-
-.player-submit {
-  color: white;
-  background-color: #43b02a;
-  font-size: 1.2em;
-  height: 40px;
-  width: 104px;
-  margin-top: 4px;
-
-  &:hover, &:focus, &:active {
-    background-color: #007041;
-    outline: none;
   }
 }
 
