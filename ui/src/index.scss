@@ -3,4 +3,37 @@ html {
   color: #222;
   font-size: 1em;
   line-height: 1.4;
+  font-family: "Ubuntu", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+}
+
+#root {
+  min-width: 400px;
+  margin: auto;
+  text-align: center;
+}
+
+.bttn {
+  color: white;
+  background-color: #43b02a;
+  font-size: 1.2em;
+  height: 40px;
+  width: 104px;
+  margin-top: 4px;
+  visibility: visible;
+  opacity: 1.0;
+
+  &:hover, &:focus, &:active {
+    background-color: #007041;
+    outline: none;
+  }
+  &.game-save {
+    width: 165px;
+  }
+
+  &.hidden {
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s, height 0.3s, ease 0.3s;
+  }
 }

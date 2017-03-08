@@ -1,6 +1,5 @@
 var webpack = require("webpack");
 var path = require("path");
-
 // Ignore Typescript specification files
 var ignore = new webpack.IgnorePlugin(/^\.spec\.ts$/);
 
@@ -10,7 +9,7 @@ var loaders = [
   {test: /\.scss$/, loader: "style!css!resolve-url!sass"},
   // Support both Typescript and ES2015 Javascript
   {test: /\.js$/, loader: 'babel-loader',
-   exclude: /(node_modules|bower_components)/, query: {presets: ['es2015']}},
+   exclude: /(node_modules|bower_components)/, query: {presets: ['es2015', 'react']}},
   {test: /\.ts$/, loader: "ts-loader"},
 
   {test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader?name=font/[hash:6].[ext]"},
