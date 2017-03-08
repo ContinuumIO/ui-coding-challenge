@@ -8,3 +8,7 @@ __conda_version__.txt
 
 ui/node_modules/
 ui/static/
+ui
+backend
+environment.yml
+run.py
