@@ -1,8 +1,9 @@
 import * as constants from './constants';
 
-export function newGame() {
+export function newGame(samePlayers) {
   return {
-    type: constants.NEW_GAME;
+    type: constants.NEW_GAME,
+    samePlayers,
   }
 }
 
@@ -20,11 +21,11 @@ export function startGame() {
   }
 }
 
-export function gameWon(playerNumber, indices) {
+export function gameWon(playerNumber, winningIndices) {
   return {
     type: constants.GAME_WON,
     playerNumber,
-    indices,
+    winningIndices,
   }
 }
 
@@ -34,10 +35,10 @@ export function gameDraw() {
   }
 }
 
-export function makeMove(player, index) {
+export function makeMove(playerNumber, index) {
   return {
     type: constants.MAKE_MOVE,
-    player,
+    playerNumber,
     index,
   }
 }
@@ -47,6 +48,7 @@ export function saveGame() {
     type: constants.SAVE_GAME,
   }
 }
+
 
 export function loadGame(id) {
   return {

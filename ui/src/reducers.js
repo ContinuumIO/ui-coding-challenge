@@ -1,5 +1,6 @@
 import AppRecord from './records';
 
+
 export function newGame(state, action) {
   const blankBoard = [ null, null, null, null, null, null, null, null, null ];
   if(action.samePlayers) {
@@ -15,9 +16,6 @@ export function newGame(state, action) {
                 .set('playerTwoName', '');
   }
 }
-
-};
-
 
 export function savePlayerName(state, action) {
   if (action.playerNumber == 0) {
@@ -38,10 +36,56 @@ export function gameWon(state, action) {
   return state.set('gameInProgress', false)
               .set('gameWon', true)
               .set('winningPlayer', action.playerNumber)
-              .set('games', games),
-              .set('winningIndices', action.indices);
+              .set('games', games)
+              .set('winningIndices', action.winningIndices);
 
 }
+
+export function gameDraw(state, action) {
+  return state.set('gameInProgress', false)
+              .set('gameDraw', true);
+}
+
+export function makeMove(state, action) {
+  const newBoard = state.get('board');
+  newBoard[action.index] = action.playerNumber
+  return state.set('board', newBoard);
+}
+
+export function replaceGame(state, action) {
+  const players = action.attributes.players;
+  const board = action.attributes.board;
+  // TODO write evalBoard code in boardLogic
+  const result = evalBoard(attributes);
+  if(result.inProgress) {
+    return state.set('board', board)
+                .set('playerOneName', players[0])
+                .set('playerTwoName', players[1])
+                .set('gameInProgress', true)
+                .set('gameDraw', false)
+                .set('gameWon', false)
+                .set('againstComputer', result.againstComputer)
+                .set('currentPlayer', result.currentPlayer);
+  } else if (result.gameWon) {
+    return state.set('board', board)
+                .set('playerOneName', players[0])
+                .set('playerTwoName', players[1])
+                .set('gameInProgress', false)
+                .set('gameDraw', false)
+                .set('gameWon', [result.winningPlayer, result.winningIndices])
+                .set('againstComputer', result.againstComputer)
+                .set('gameSetupInProgress', true);
+  } else {
+    return state.set('board', board)
+                .set('playerOneName', players[0])
+                .set('playerTwoName', players[1])
+                .set('gameInProgress', false)
+                .set('gameDraw', true)
+                .set('againstComputer', result.againstComputer)
+                .set('gameSetupInProgress', true);
+  }
+}
+
 export default function handleApp(state, action) {
   switch(action.type) {
     case "NEW_GAME":
@@ -58,8 +102,8 @@ export default function handleApp(state, action) {
       return makeMove(state, action);
     case "SAVE_GAME":
       return saveGame(state, action);
-    case "LOAD_GAME":
-      return loadGame(state, action);
+    case "REPLACE_GAME":
+      return replaceGame(state, action);
     default:
       return state;
   }

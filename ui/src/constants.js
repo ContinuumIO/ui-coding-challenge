@@ -1,0 +1,9 @@
+export const NEW_GAME = 'NEW_GAME';
+export const SAVE_GAME = 'SAVE_GAME';
+export const MAKE_MOVE = 'MAKE_MOVE';
+export const LOAD_GAME = 'LOAD_GAME';
+export const GAME_WON = 'GAME_WON';
+export const GAME_DRAW = 'GAME_DRAW';
+export const SAVE_PLAYER_NAME = 'SAVE_PLAYER_NAME';
+export const START_GAME = 'START_GAME';
+export const REPLACE_GAME = 'REPLACE_GAME';
