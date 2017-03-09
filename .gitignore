@@ -7,4 +7,6 @@ __conda_version__.txt
 *$py.class
 
 ui/node_modules/
-ui/static/
+bundle.js
+bundle.js.map
+ui/deleteme/
