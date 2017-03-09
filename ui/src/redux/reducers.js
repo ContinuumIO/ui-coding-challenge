@@ -1,5 +1,5 @@
 import AppRecord from './records';
-import { evalBoard } from './board-logic';
+import { evalBoard } from '../board-logic';
 
 export function newGame(state, action) {
   const blankBoard = [ null, null, null, null, null, null, null, null, null ];

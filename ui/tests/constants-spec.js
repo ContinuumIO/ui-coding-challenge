@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import * as constants from '../src/constants';
+import * as constants from '../src/redux/constants';
 
 describe('constants', () => {
   Object.keys(constants).forEach((name) => {

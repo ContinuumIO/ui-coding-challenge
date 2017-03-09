@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 
-import * as constants from '../src/constants';
-import reducers from '../src/reducers';
-import { AppRecord } from '../src/records';
+import * as constants from '../src/redux/constants';
+import reducers from '../src/redux/reducers';
+import { AppRecord } from '../src/redux/records';
 
 describe('newGame', () => {
   it('takes state and resets players given right action', () => {

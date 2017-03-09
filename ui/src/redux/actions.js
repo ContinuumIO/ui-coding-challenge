@@ -43,9 +43,10 @@ export function makeMove(playerNumber, index) {
   }
 }
 
-export function saveGame() {
+export function saveGame(attributes) {
   return {
     type: constants.SAVE_GAME,
+    attributes,
   }
 }
 

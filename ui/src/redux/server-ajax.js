@@ -6,7 +6,7 @@ import * as uuid from 'uuid';
   Maybe parse from command line args and pass down to here?
  */
 const serverConfig = {
-  endpoint: "http://127.0.0.1:8888",
+  endpoint: "http://127.0.0.1:8080",
   crossDomain: true,
 };
 

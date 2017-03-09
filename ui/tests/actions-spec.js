@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
-import * as actions from '../src/actions.js';
-import * as constants from '../src/constants.js';
+import * as actions from '../src/redux/actions.js';
+import * as constants from '../src/redux/constants.js';
 
 describe('newGame', () => {
   it('creates a NEW_GAME action', () => {
@@ -60,8 +60,10 @@ describe('makeMove', () => {
 
 describe('saveGame', () => {
   it('creates a SAVE_GAME action', () => {
-    expect(actions.saveGame()).to.deep.equal({
+    const attrs = {'fake': 0};
+    expect(actions.saveGame(attrs)).to.deep.equal({
       type: constants.SAVE_GAME,
+      attributes: attrs,
     });
   });
 })
