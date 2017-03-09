@@ -3,7 +3,7 @@ import { findWin, evalBoard } from '../src/board-logic';
 
 describe('findWin', () => {
   it('returns a draw when expected', () => {
-    const board = [1,0,1,0,1,0,1,0,1];
+    const board = [0, 1, 0, 0, 1, 1, 1, 0, 0];
     expect(findWin(board)).to.deep.equal({
       gameDraw: true,
     });
@@ -71,6 +71,21 @@ describe('evalBoard', () => {
       'currentPlayer': 0,
     });
   });
+  it('same game in progress test with another board', () => {
+    const attributes = {
+      "players": ['John', "Continuum Analytics"],
+      "board": [0, 1, 0, null, null, null, null, null, null],
+    };
+    expect(evalBoard(attributes)).to.deep.equal({
+      'gameInProgress': true,
+      'gameWon': false,
+      'gameDraw': false,
+      'winningPlayer': null,
+      'indices': null,
+      'againstComputer': null,
+      'currentPlayer': 1,
+    });
+  })
   it('returns result with Won data', () => {
     const board = [1, 1, 1, 0, 1, 0, 0, null, null];
     const attributes = {

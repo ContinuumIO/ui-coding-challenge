@@ -42,63 +42,15 @@ export function evalBoard(attributes) {
  * @return {object} results of checking, keys will be win, draw, or game in progress
  */
 export function findWin(board) {
-  // horizontal check
-  var sum;
-  var indices = [];
-  for (var i=0; i<=6; i += 3) {
-    sum = 0;
-    indices = [];
-    for(var j=0; j<3; j++) {
-      if(board[i+j] == null) {
-        sum = -100;
-        break;
-      }
-      sum += board[i+j];
-      indices.push(i+j)
-    }
-    if (sum === 3 || sum === 0) {
-      return { 'gameWon' : true, winningPlayer: sum/3, indices }
-    }
-  }
-  for (var i=0; i<3; i++) {
-    sum = 0;
-    indices = [];
-    for (var j=0; j<=6; j+=3) {
-      if(board[i+j] == null) {
-        sum = -100;
-        break;
-      }
-      sum += board[i+j];
-      indices.push(i+j);
-    }
-    if (sum === 3 || sum === 0) {
-      return { 'gameWon' : true, 'winningPlayer': sum/3, indices }
-    }
-  }
-  for (var j=0; j<3; j++) {
-    sum = 0;
-    indices = [];
-    if(board[(4*j)] == null) {
-      sum = -100;
-      break;
-    }
-    sum += board[4*j];
-    indices.push(4*j);
-    if (sum === 3 || sum === 0) {
-      return { 'win' : true, 'winningPlayer': sum/3, indices }
-    }
-  }
-  for (var i=0; i<3; i++) {
-    sum = 0;
-    indices = [];
-    if(board[2+(2*i)] == null) {
-      sum = -100;
-      break;
-    }
-    sum += board[2+(2*i)];
-    indices.push(2+(2*i));
-    if (sum === 3 || sum === 0) {
-      return { 'gameWon' : true, 'winningPlayer': sum/3, indices }
+  const winningSets = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+  for(var i=0; i<8; i++) {
+    var prev = board[winningSets[i][0]];
+    if(prev === null) {
+      continue;
+    } else if (winningSets[i].every((val) => { return board[val] === prev })) {
+      return { gameWon: true, winningPlayer: prev, indices: winningSets[i] }
+    } else {
+      continue;
     }
   }
   board = board.filter((val) => { return val !== null });

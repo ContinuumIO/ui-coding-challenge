@@ -1,7 +1,7 @@
 const Immutable = require('immutable');
 
 /*
-  gameInProgress includes victory screen
+  being in the state of "gameInProgress" includes  a victory screen
  */
 export const AppRecord = Immutable.Record({
   gameInProgress: false,

@@ -1,5 +1,5 @@
 import AppRecord from './records';
-
+import { evalBoard } from './board-logic';
 
 export function newGame(state, action) {
   const blankBoard = [ null, null, null, null, null, null, null, null, null ];
@@ -55,9 +55,9 @@ export function makeMove(state, action) {
 export function replaceGame(state, action) {
   const players = action.attributes.players;
   const board = action.attributes.board;
-  // TODO write evalBoard code in boardLogic
-  const result = evalBoard(attributes);
-  if(result.inProgress) {
+
+  const result = evalBoard(action.attributes);
+  if(result.gameInProgress) {
     return state.set('board', board)
                 .set('playerOneName', players[0])
                 .set('playerTwoName', players[1])

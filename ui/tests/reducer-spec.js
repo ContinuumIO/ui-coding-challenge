@@ -104,3 +104,27 @@ describe('makeMove', () => {
     expect(state.board[0]).to.be.equal(0);
   });
 })
+
+describe('replaceGame', () => {
+  it('replaces with a game that is in progress', () => {
+    const originalState = new AppRecord({
+      board: [ 1, 0, 1, null, null, null, null, null, null],
+      playerOneName: "John",
+      playerTwoName: "Really hope this works",
+      gameInProgress: false,
+    });
+    const attributes = {
+      'players': ["Probably", "Wont work"],
+      'board': [0, 1, 0, null, null, null, null, null, null],
+    };
+    const action = {
+      type: constants.REPLACE_GAME,
+      attributes,
+    }
+    const state = reducers(originalState, action);
+    expect(state.gameInProgress).to.be.equal(true);
+    expect(state.currentPlayer).to.be.equal(1);
+    expect(state.playerOneName).to.be.equal('Probably');
+    expect(state.playerTwoName).to.be.equal('Wont work');
+  });
+});
