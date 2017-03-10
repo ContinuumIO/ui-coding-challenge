@@ -7,6 +7,7 @@
     "noUnusedLocals": true,
     "outDir": "../static",
     "target": "ES5",
-    "newLine": "LF"
+    "newLine": "LF",
+    "allowJs": true
   }
 }
