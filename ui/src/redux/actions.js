@@ -64,3 +64,10 @@ export function replaceGame(attributes) {
     attributes,
   }
 }
+
+export function setNotificationSystem(notificationSystem) {
+  return {
+    type: constants.SET_NOTIFICATION_SYSTEM,
+    notificationSystem,
+  }
+}

@@ -17,4 +17,5 @@ export const AppRecord = Immutable.Record({
   gameWon: null,
   gameDraw: false,
   againstComputer: false,
+  notificationSystem: null,
 })

@@ -16,29 +16,29 @@ body {
 
 .board-container {
   padding:10px;
-  .board-bg {
-    margin-left: auto;
-    margin-right: auto;
-    background: white;
-    width: 600px;
-    min-height: 600px;
-    padding: 12px;
-  }
+  margin-left: auto;
+  margin-right: auto;
+  background: white;
+  width: 380px;
+  height: 380px;
+  border-radius: 5px;
   .board {
-    background: black;
+    background: $gray-dark;
   }
   .row {
     margin: 5px;
     display: flex;
+    height: 110px;
     justify-content: center;
   }
   .toe-element {
     text-align: center;
-    height: 60px;
-    width:60px;
-    background: white;
+    height: 100px;
+    width:100px;
+    background: $gray-light;
     margin:5px;
     padding:5px;
+    border-radius: 5px;
   }
 }
 
@@ -50,11 +50,6 @@ body {
 
 .hidden {
   display: none !important;
-}
-
-.manage-header {
-  text-transform: uppercase;
-  color: $content-subheader-color;
 }
 
 .align-center {

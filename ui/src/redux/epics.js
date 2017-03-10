@@ -25,3 +25,7 @@ export function moveEpic(action$) {
 export function listEpic(action$) {
   return action$.ofType('LIST_GAMES')
 }
+
+const epics = [saveEpic, startGameEpic, moveEpic, listEpic];
+
+export default epics;

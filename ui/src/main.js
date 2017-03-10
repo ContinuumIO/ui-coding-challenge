@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import NotificationSystem from 'react-notification-system';
+import { Provider } from 'react-redux';
 import configureStore from './redux/store';
-import reducer from './redux/reducers';
-import AppRecord from './redux/record'
+import reducers from './redux/reducers';
+import { AppRecord } from './redux/records';
+import { setNotificationSystem } from './redux/actions';
 
-
-
-import Game from './component/game.js'
+import '../assets/index.scss';
+import Game from './components/board/game.js';
+import TopBar from './components/topbar.js';
 /*
 import Board from './components/toe-board.js';
 import Creator from './components/game-creator.js';
@@ -15,10 +17,7 @@ import Score from './components/score.js'
 import GameList from './component/game-list';
 */
 
-const store = configureStore({
-  AppRecord(),
-}, reducers);
-
+const store = configureStore(AppRecord(), reducers);
 
 window.store = store;
 
@@ -31,9 +30,8 @@ class App extends React.PureComponent {
   render() {
     return (
       <Provider store={store}>
-        <TopBar>
         <div>
-          <link rel="stylesheet" href="../assets/index.css" />
+          <TopBar />
           <Game />
           <NotificationSystem
             ref={(notificationSystem) => { this.notificationSystem = notificationSystem; }}
@@ -43,3 +41,8 @@ class App extends React.PureComponent {
     );
   }
 }
+
+ReactDOM.render(
+  <App />,
+  document.querySelector('#app')
+);

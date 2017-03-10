@@ -86,6 +86,10 @@ export function replaceGame(state, action) {
   }
 }
 
+export function setNotificationSystem(state, action) {
+  return state.set('notificationSystem', action.notificationSystem);
+}
+
 export default function handleApp(state, action) {
   switch(action.type) {
     case "NEW_GAME":
@@ -104,6 +108,8 @@ export default function handleApp(state, action) {
       return saveGame(state, action);
     case "REPLACE_GAME":
       return replaceGame(state, action);
+    case "SET_NOTIFICATION_SYSTEM":
+      return setNotificationSystem(state, action);
     default:
       return state;
   }
