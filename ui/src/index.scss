@@ -1,7 +1,66 @@
+@import 'styles/phosphor/index.css';
+
 html {
   background-color: #EFEFEF;
   color: #222;
   font-size: 1em;
   line-height: 1.4;
+}
+
+
+.game-score-board {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  width: 545px;
+  border: 2px solid #EEEEEE;
+  text-align: center;
+  font-family: 'Acme', sans-serif;
+}
+
+.game-title-element {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  width: 545px;
+  
+  text-align: center;
+  font-family: 'Acme', sans-serif;
+}
+
+.game-board {
+  margin-left: auto;
+  margin-right: auto;
+  
+  padding-top: 1px;
+  padding-left: 1px;
+  width: 547px;
+  height: 547px;
+  background-color: #EEEEEE;
+}
+
+.board-element {
+  font-size: 6em;
+  width: 180px;
+  height: 180px;
+  margin: 1px 1px 1px 1px;
+  float: left;
+  background-color: white;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 200px;
+  font-family: 'Acme', sans-serif;
+}
+
+.player-X {
+  color: blue;
+}
+
+.player-O {
+  color: red;
+}
+
+.win-element {
+  background-color: #fffacd
 }
 

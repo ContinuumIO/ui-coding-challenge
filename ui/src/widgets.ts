@@ -1,8 +1,7 @@
-import './styles/phosphor/index.css';
 import { Widget, DockPanel, MenuBar, Menu, BoxPanel } from '@phosphor/widgets'
 import { Message } from '@phosphor/messaging';
 import { commands } from './commands'
-
+import { TicTacToeGame } from './game'
 export class GameWidget extends Widget {
   constructor() {
     super({ node: GameWidget.createNode() })
@@ -15,9 +14,13 @@ export class GameWidget extends Widget {
   }
 
   static createNode() {
-    let node = document.createElement('div');
+    let node: any = document.createElement('div');
     let content = document.createElement('div');
-    content.innerHTML = "<h1> Tic-Tac-Toe </h1>"
+    node.game = new TicTacToeGame(); 
+    
+    content.appendChild(node.game.titleElement);
+    content.appendChild(node.game.boardElement);
+    content.appendChild(node.game.leaderBoardElement);
     node.appendChild(content);
     return node;
   }

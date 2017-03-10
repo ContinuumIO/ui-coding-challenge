@@ -1,3 +1,4 @@
+import './index.scss';
 import { Widget } from '@phosphor/widgets'
 
 import { menuBar, boxPanel} from './widgets'
