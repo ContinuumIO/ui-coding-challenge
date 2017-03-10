@@ -1,0 +1,87 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    height: auto;
+    min-height: 100vh !important;
+    overflow-x:hidden;
+}
+
+
+#player-form {
+    color: #9ecaed;
+    width: 976px;
+    margin: auto;
+    margin-top: 40px;
+    text-align: center;
+
+}
+
+.gameboard {
+    width: 976px;
+    min-height: 400px;
+    margin: auto;
+    margin-top: 80px;
+    opacity: 1;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+
+.tile {
+    display: inline-block;
+    width: 320px;
+    height: 200px;
+    /*margin: 1px;*/
+    opacity: 1;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+    border: 1px solid white;
+}
+
+.restart {
+    margin-top: 10px;
+    width: 25%;
+    font-size: 2em;
+    color: #9ecaed;
+    background: transparent;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    text-align: center;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    /*background-color: #fefefe;*/
+    color: #9ecaed;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    utline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

@@ -14,11 +14,11 @@ var loaders = [
   {test: /\.ts$/, loader: "ts-loader"},
 
   {test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader?name=font/[hash:6].[ext]"},
-  {test: /\.(jpg|png|gif)$/, loader: 'url-loader?limit=10000' },
+  {test: /\.(jpg|png|gif)$/, loader: 'url-loader?limit=50=5000000' },
   {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff&name=font/[hash:6].[ext]" }
 ];
 
-var extensions = ["", ".webpack.js", ".web.js", ".ts", ".js", ".scss"];
+var extensions = ["", ".webpack.js", ".web.js", ".ts", ".js", ".scss", ".png"];
 
 var includePaths = [path.resolve(__dirname, "../node_modules")];
 var staticPath = "./static";

@@ -1,9 +1,59 @@
+
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Continuum UI Coding Challenge</title>
-        <script src="{{ static_url('bundle.js') }}"></script>
-    </head>
-    <body>
-    </body>
-</html
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Outta This World Tic Tac Toe</title>
+    <!-- <link rel="stylesheet" href="{{ static_url('reset.css') }}">
+    <link rel="stylesheet" href="{{ static_url('stars.css') }}">
+    <link rel="stylesheet" href="{{ static_url('style.css') }}"> -->
+</head>
+
+<body>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+
+    <form id="player-form">
+        <label for="player1">Player 1:</label>
+        <input id="player1" type="text" name="player1" value="Player1">
+        <label for="player2">Player 2:</label>
+        <input id="player2" type="text" name="player2" value="Player2">
+        <input id="save" type="submit" value="Save Game">
+    </form>
+
+
+    <div class="gameboard">
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+    </div>
+
+
+    <div id="gameOverModal" class="modal">
+        <div class="modal-content">
+            <div class="stars"></div>
+            <div class="twinkling"></div>
+            <span class="close">&times;</span>
+            <h2></h2>
+            <p>Would you like to play again?</p>
+            <button class="restart">Restart</button>
+        </div>
+    </div>
+
+    <!-- <script src="{{ static_url('jquery-3.1.1.min.js') }}"></script> -->
+    <script src="{{ static_url('bundle.js') }}"></script>
+
+    <!-- <script src="assets/js/jquery-3.1.1.min.js"></script>
+    <script src="assets/js/game.js"></script> -->
+</body>
+
+</html>
