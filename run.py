@@ -12,7 +12,8 @@ def build_ui():
     previous_dir = os.getcwd()
     os.chdir(os.path.join(os.path.dirname(__file__), "ui"))
     logging.info("Building UI assets")
-    subprocess.call(["npm", "run", "build"])
+    #Add shell=True to fix FileNotFoundError in Windows.
+    subprocess.call(["npm", "run", "build"], shell=True)
     os.chdir(previous_dir)
 
 

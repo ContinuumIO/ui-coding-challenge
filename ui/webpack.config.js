@@ -24,7 +24,7 @@ var includePaths = [path.resolve(__dirname, "../node_modules")];
 var staticPath = "./static";
 
 module.exports = [{
-  entry: "./src/main.js",
+  entry: "./src/app.ts",
   output: {
     path: staticPath,
     filename: "bundle.js",
