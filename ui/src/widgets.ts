@@ -20,7 +20,8 @@ export class GameWidget extends Widget {
     
     content.appendChild(node.game.titleElement);
     content.appendChild(node.game.boardElement);
-    content.appendChild(node.game.leaderBoardElement);
+    content.appendChild(node.game.leaderBoardElement)
+    content.appendChild(node.game.saveGameElement);
     node.appendChild(content);
     return node;
   }
@@ -36,7 +37,6 @@ class GameDockPanel extends DockPanel {
    }
 }
 
-
 export let dock = new GameDockPanel(); 
 export let boxPanel = new BoxPanel({ direction: 'left-to-right', spacing: 0 })
 export let menuBar = new MenuBar();
@@ -45,10 +45,12 @@ BoxPanel.setStretch(dock, 5);
 boxPanel.id = 'main';
 boxPanel.addWidget(dock)
 
+
 let fileMenu = (() => {
   let menu = new Menu({ commands })
   menu.title.label = 'File'
   menu.addItem({command: 'new-game'})
+  menu.addItem({command: 'load-game'})
   return menu
 })()
 

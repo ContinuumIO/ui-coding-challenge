@@ -1,8 +1,11 @@
+import { AJAXRequest } from './controller'
+
 export class TicTacToeGame {
   state: any
   boardElement: HTMLElement
   leaderBoardElement: HTMLElement
   titleElement: HTMLElement
+  saveGameElement: HTMLElement
   
   constructor(state: Object = null) {
     this.state = state || 
@@ -42,10 +45,35 @@ export class TicTacToeGame {
       return titleElement
     })()
 
+    this.saveGameElement = (() => {
+      let saveGame = document.createElement('div');
+      saveGame.className = 'save-game-element'
+      saveGame.addEventListener("click", (e: any) => {
+        this.saveGame()
+      })
+      saveGame.innerHTML = `<h3>SAVE GAME</h3>`
+      return saveGame
+    })()
+
     this.renderBoardState()
     this.createLeaderBoardMessage()
   }
   
+  saveGame() {
+    const gameData = {
+        "players": this.state.players,
+        "board": this.state.boardData
+      }
+     AJAXRequest('POST', '/api/games', gameData)
+      .then((data: any) => {
+        alert('GAME SAVED')
+        return AJAXRequest('GET', '/api/games')
+      })
+      .then((data: any) => {
+        console.log(data)
+      })
+  }
+
   onBoardClick(id: number) {
     if (this.state.boardData[id] === '' && this.state.winner === null) {
 
@@ -57,15 +85,8 @@ export class TicTacToeGame {
       this.renderBoardState();
       this.createLeaderBoardMessage()
     
-    } else if (this.state.winner === null || this.state.movesLeft === 0) {
-      //THE GAME ENDED IN A DRAW!
-      console.log('GAME OVER')
-    } else {
-      console.log('ALREADY PLAYED THERE!')
-    }
- 
+    } 
   }
-
   createLeaderBoardMessage() {
     if (this.state.winner === null && this.state.movesLeft === 0) {
       //THE GAME ENDED IN A DRAW!
