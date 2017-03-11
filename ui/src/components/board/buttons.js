@@ -14,8 +14,12 @@ export default class Buttons extends React.Component {
     this.saveGame = this.saveGame.bind(this);
   }
 
-  newGame() {
-    store.dispatch(newGame(false));
+  newGame(props) {
+    if(props.gameInProgress || this.props.gameWon || this.props.gameDraw) {
+      store.dispatch(newGame(true));
+    } else {
+      store.dispatch(newGame(false));
+    }
   }
 
   startGame() {
@@ -30,7 +34,10 @@ export default class Buttons extends React.Component {
     if(this.props.blankSlate) {
       buttons =
         <div className='buttons buttons-blank-slate'>
-          <div className='btn btn-new btn-blank-slate' onClick = { this.newGame } >
+          <div
+            className='btn btn-new btn-blank-slate'
+            onClick = { this.newGame.bind(this, this.props) }
+          >
             Start A New Game
           </div>
         </div>
@@ -44,7 +51,10 @@ export default class Buttons extends React.Component {
     } else {
       buttons =
         <div className='buttons'>
-          <div className='btn btn-new' onClick = { this.newGame }>
+          <div
+            className='btn btn-new'
+            onClick = { this.newGame.bind(this, this.props) }
+          >
             New Game
           </div>
           <div className='btn btn-save' onClick = { this.saveGame }>

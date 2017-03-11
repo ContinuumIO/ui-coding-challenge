@@ -33,14 +33,32 @@ export default class GameInfo extends React.Component {
         </div> );
     } else {
       if(this.props.gameWon|| this.props.gameDraw) {
-        return <div className='scoreboard'></div>
+        let set = { 0: this.props.playerOneName,
+                    1: this.props.playerTwoName };
+        const message = (this.props.gameWon) ?
+          [`Congrats`, `${set[this.props.winningPlayer]}`, `You Won!`] :
+          [`Bummer`, `it looks like this one is a`, `Draw!`];
+        return (
+          <div>
+            <div className='overlay'>
+              <div className='overlay-message large'> {message[0]} </div>
+              <div className='overlay-message'> {message[1]} </div>
+              <div className='overlay-message large'> {message[2]} </div>
+            </div>
+            <div className='scoreboard'>
+              <div className='message'></div>
+            </div>
+          </div>
+        );
       } else {
-        let message = (this.props.currentPlayer === 0 ) ?
+        const message = (this.props.currentPlayer === 0 ) ?
           `It is your turn, ${this.props.playerOneName.split(' ')[0]}` :
           `It is your turn, ${this.props.playerTwoName.split(' ')[0]}`;
         return (
-            <div className='scoreboard'>
-              <div className='message'> {message} </div>
+            <div>
+              <div className='scoreboard'>
+                <div className='message'> {message} </div>
+              </div>
             </div>
         );
       }

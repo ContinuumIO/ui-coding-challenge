@@ -1,27 +1,27 @@
-import AppRecord from './records';
 import { evalBoard } from '../board-logic';
 
 export function newGame(state, action) {
   const blankBoard = [ null, null, null, null, null, null, null, null, null ];
+  let newState = state;
   if(action.samePlayers) {
-    return state.set('gameSetupInProgress', true)
-                .set('gameInProgress', false)
-                .set('blankSlate', false)
-                .set('board', blankBoard)
-                .set('winningIndices', null)
-                .set('id', null)
-                .set('currentPlayer', 0);
+    const playerOneName = state.get('playerOneName');
+    const playerTwoName = state.get('playerTwoName');
+    newState = newState.set('playerOneName', playerOneName)
+                       .set('playerTwoName', playerTwoName)
+
   } else {
-    return state.set('gameSetupInProgress', true)
-                .set('blankSlate', false)
-                .set('gameInProgress', false)
-                .set('board', blankBoard)
-                .set('games', { '0': 0, '1': 0 })
-                .set('winningIndices', null)
-                .set('playerOneName', '')
-                .set('playerTwoName', '')
-                .set('currentPlayer', 0);
+    newState = newState.set('playerOneName', '')
+                       .set('playerTwoName', '')
   }
+  return newState.set('gameSetupInProgress', true)
+                 .set('blankSlate', false)
+                 .set('gameInProgress', false)
+                 .set('gameWon', false)
+                 .set('gameDraw', false)
+                 .set('board', blankBoard)
+                 .set('games', { '0': 0, '1': 0 })
+                 .set('winningIndices', null)
+                 .set('currentPlayer', 0);
 }
 
 export function savePlayerName(state, action) {

@@ -61,15 +61,21 @@ export default class ToeElement extends React.Component {
           );
       }
     } else {
-      return (
-        <div
-          className='toe-element'
-          onMouseEnter={this.toggleHover}
-          onMouseLeave={this.toggleHover}
-          onClick={this.makeMove.bind(this, this.props.currentPlayer, this.props.index)}
-        >
-        </div>
-      );
+      if(this.props.winning !== undefined) {
+        return (
+          <div className='toe-element'></div>
+        );
+      } else {
+        return (
+          <div
+            className='toe-element'
+            onMouseEnter={this.toggleHover}
+            onMouseLeave={this.toggleHover}
+            onClick={this.makeMove.bind(this, this.props.currentPlayer, this.props.index)}
+          >
+          </div>
+        );
+      }
     }
   }
 }

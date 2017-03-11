@@ -37,6 +37,7 @@ export class Game extends React.Component {
       gameSetupInProgress: props.gameSetupInProgress,
       gameInProgress: props.gameInProgress,
       gameWon: props.gameWon,
+      winningPlayer: props.winningPlayer,
       gameDraw: props.gameDraw,
       currentPlayer: props.currentPlayer,
       playerOneName: props.playerOneName,
@@ -64,6 +65,8 @@ export class Game extends React.Component {
       blankSlate: props.blankSlate,
       gameSetupInProgress: props.gameSetupInProgress,
       gameInProgress: props.gameInProgress,
+      gameWon: props.gameWon,
+      gameDraw: props.gameDraw,
     }
   }
 

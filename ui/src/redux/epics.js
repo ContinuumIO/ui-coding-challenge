@@ -76,7 +76,7 @@ export function checkMove(store) {
         }
       )
     } else if (results.gameDraw) {
-      server.update(id, attributes).subscribe(
+      server.update(serverConfig, id, attributes).subscribe(
           (xhr) => {},
           (err) => { observer.error({"ERROR": true, payload: err}) },
           () => {

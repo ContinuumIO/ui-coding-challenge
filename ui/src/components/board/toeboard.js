@@ -23,6 +23,7 @@ export default class ToeBoard extends React.Component {
         <ToeElement
           currentPlayer={props.currentPlayer}
           occupied={val}
+          winning={false}
           key={index}
           index={index}
         />
