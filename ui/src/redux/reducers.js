@@ -3,15 +3,14 @@ import { evalBoard } from '../board-logic';
 export function newGame(state, action) {
   const blankBoard = [ null, null, null, null, null, null, null, null, null ];
   let newState = state;
-  if(action.samePlayers) {
+  if (action.samePlayers) {
     const playerOneName = state.get('playerOneName');
     const playerTwoName = state.get('playerTwoName');
     newState = newState.set('playerOneName', playerOneName)
-                       .set('playerTwoName', playerTwoName)
-
+                       .set('playerTwoName', playerTwoName);
   } else {
     newState = newState.set('playerOneName', '')
-                       .set('playerTwoName', '')
+                       .set('playerTwoName', '');
   }
   return newState.set('gameSetupInProgress', true)
                  .set('blankSlate', false)
@@ -39,7 +38,6 @@ export function gameWon(state, action) {
               .set('winningPlayer', action.playerNumber)
               .set('games', games)
               .set('winningIndices', action.winningIndices);
-
 }
 
 export function gameDraw(state, action) {
@@ -67,7 +65,7 @@ export function replaceGame(state, action) {
   const board = action.attributes.board;
 
   const result = evalBoard(action.attributes);
-  if(result.gameInProgress) {
+  if (result.gameInProgress) {
     return state.set('board', board)
                 .set('playerOneName', players[0])
                 .set('playerTwoName', players[1])
@@ -84,14 +82,14 @@ export function replaceGame(state, action) {
                 .set('gameInProgress', false)
                 .set('gameDraw', false)
                 .set('gameWon', [result.winningPlayer, result.winningIndices])
-                .set('againstComputer', result.againstComputer)
+                .set('againstComputer', result.againstComputer);
   } else {
     return state.set('board', board)
                 .set('playerOneName', players[0])
                 .set('playerTwoName', players[1])
                 .set('gameInProgress', false)
                 .set('gameDraw', true)
-                .set('againstComputer', result.againstComputer)
+                .set('againstComputer', result.againstComputer);
   }
 }
 
@@ -100,13 +98,13 @@ export function setNotificationSystem(state, action) {
 }
 
 export function toggleList(state, action) {
-  return (state.get('listOpen')) ? state.set('listOpen',false) :
-          state.set('listOpen', true);
+  return (state.get('listOpen')) ? state.set('listOpen', false)
+          : state.set('listOpen', true);
 }
 
 export function toggleWaiting(state, action) {
-  return (state.get('waiting')) ? state.set('waiting',false) :
-          state.set('waiting', true);
+  return (state.get('waiting')) ? state.set('waiting', false)
+          : state.set('waiting', true);
 }
 
 export function listGames(state, action) {
@@ -114,28 +112,28 @@ export function listGames(state, action) {
 }
 
 export default function handleApp(state, action) {
-  switch(action.type) {
-    case "NEW_GAME":
+  switch (action.type) {
+    case 'NEW_GAME':
       return newGame(state, action);
-    case "SAVE_PLAYER_NAME":
+    case 'SAVE_PLAYER_NAME':
       return savePlayerName(state, action);
-    case "DONE_STARTING":
+    case 'DONE_STARTING':
       return doneStarting(state, action);
-    case "GAME_WON":
+    case 'GAME_WON':
       return gameWon(state, action);
-    case "GAME_DRAW":
+    case 'GAME_DRAW':
       return gameDraw(state, action);
-    case "MAKE_MOVE":
+    case 'MAKE_MOVE':
       return makeMove(state, action);
-    case "REPLACE_GAME":
+    case 'REPLACE_GAME':
       return replaceGame(state, action);
-    case "SET_NOTIFICATION_SYSTEM":
+    case 'SET_NOTIFICATION_SYSTEM':
       return setNotificationSystem(state, action);
-    case "TOGGLE_LIST":
+    case 'TOGGLE_LIST':
       return toggleList(state, action);
-    case "TOGGLE_WAITING":
+    case 'TOGGLE_WAITING':
       return toggleWaiting(state, action);
-    case "LIST_GAMES":
+    case 'LIST_GAMES':
       return listGames(state, action);
     default:
       return state;

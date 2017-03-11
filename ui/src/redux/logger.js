@@ -12,7 +12,7 @@ module.exports = function clogger() {
           prev,
           { [key]: Immutable.Iterable.isIterable(state[key]) ? state[key].toJS() : state[key] }
         )
-    , {}),
+    , {})
   });
   return logger;
 };

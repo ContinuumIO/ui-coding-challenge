@@ -3,19 +3,19 @@ import React from 'react';
 import {
   newGame,
   startGame,
-  saveGame,
+  saveGame
 } from '../../redux/actions';
 
 export default class Buttons extends React.Component {
   constructor() {
-    super()
+    super();
     this.newGame = this.newGame.bind(this);
     this.startGame = this.startGame.bind(this);
     this.saveGame = this.saveGame.bind(this);
   }
 
   newGame(props) {
-    if(props.gameInProgress || this.props.gameWon || this.props.gameDraw) {
+    if (props.gameInProgress || this.props.gameWon || this.props.gameDraw) {
       store.dispatch(newGame(true));
     } else {
       store.dispatch(newGame(false));
@@ -29,9 +29,9 @@ export default class Buttons extends React.Component {
     store.dispatch(saveGame());
   }
 
-  render () {
+  render() {
     let buttons;
-    if(this.props.blankSlate) {
+    if (this.props.blankSlate) {
       buttons =
         <div className='buttons buttons-blank-slate'>
           <div
@@ -40,14 +40,14 @@ export default class Buttons extends React.Component {
           >
             Start A New Game
           </div>
-        </div>
-    } else if(this.props.gameSetupInProgress) {
+        </div>;
+    } else if (this.props.gameSetupInProgress) {
       buttons =
         <div className='buttons buttons-blank-slate'>
           <div className='btn btn-start' onClick = { this.startGame }>
             Start Game
           </div>
-        </div>
+        </div>;
     } else {
       buttons =
         <div className='buttons'>
@@ -60,7 +60,7 @@ export default class Buttons extends React.Component {
           <div className='btn btn-save' onClick = { this.saveGame }>
             Save Game
           </div>
-        </div>
+        </div>;
     }
     return (
       <div>{buttons}</div>

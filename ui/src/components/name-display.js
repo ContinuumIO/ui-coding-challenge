@@ -7,23 +7,23 @@ const mapStateToProps = (state) => ({
   playerTwoName: state.get('playerTwoName'),
   gameInProgress: state.get('gameInProgress'),
   blankSlate: state.get('blankSlate'),
-  gameSetupInProgress: state.get('gameSetupInProgress'),
+  gameSetupInProgress: state.get('gameSetupInProgress')
 });
 
 export class NameDisplay extends React.Component {
   render() {
-    if(this.props.blankSlate) {
+    if (this.props.blankSlate) {
       return (
         <div className='game-title'>
             <div className='splash'> Welcome to Tic Tac Toe </div>
         </div>
-      )
+      );
     } else if (this.props.gameSetupInProgress) {
       return (
         <div className='game-title'>
           <div className='splash'> Enter names for the two players who wish to play </div>
         </div>
-      )
+      );
     } else {
       return (
         <div className='game-title'>

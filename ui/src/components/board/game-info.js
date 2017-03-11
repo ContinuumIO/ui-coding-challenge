@@ -8,11 +8,11 @@ export default class GameInfo extends React.Component {
     store.dispatch(savePlayerName(playerNumber, event.target.value));
   }
 
-  render () {
+  render() {
     const playerOneName = `${this.props.playerOneName}`;
     const playerTwoName = `${this.props.playerTwoName}`;
     if (this.props.blankSlate) {
-      return ( <div></div> );
+      return (<div></div>);
     } else if (this.props.gameSetupInProgress) {
       return (
         <div className='name-inputs'>
@@ -30,14 +30,14 @@ export default class GameInfo extends React.Component {
             onChange={this.updateName.bind(this, 1)}
             placeholder="Player Two Name"
           />
-        </div> );
+        </div>);
     } else {
-      if(this.props.gameWon|| this.props.gameDraw) {
+      if (this.props.gameWon || this.props.gameDraw) {
         let set = { 0: this.props.playerOneName,
-                    1: this.props.playerTwoName };
-        const message = (this.props.gameWon) ?
-          [`Congrats`, `${set[this.props.winningPlayer]}`, `You Won!`] :
-          [`Bummer`, `it looks like this one is a`, `Draw!`];
+          1: this.props.playerTwoName };
+        const message = (this.props.gameWon)
+          ? [`Congrats`, `${set[this.props.winningPlayer]}`, `You Won!`]
+          : [`Bummer`, `it looks like this one is a`, `Draw!`];
         return (
           <div>
             <div className='overlay'>
@@ -51,9 +51,9 @@ export default class GameInfo extends React.Component {
           </div>
         );
       } else {
-        const message = (this.props.currentPlayer === 0 ) ?
-          `It is your turn, ${this.props.playerOneName.split(' ')[0]}` :
-          `It is your turn, ${this.props.playerTwoName.split(' ')[0]}`;
+        const message = (this.props.currentPlayer === 0)
+          ? `It is your turn, ${this.props.playerOneName.split(' ')[0]}`
+          : `It is your turn, ${this.props.playerTwoName.split(' ')[0]}`;
         return (
             <div>
               <div className='scoreboard'>

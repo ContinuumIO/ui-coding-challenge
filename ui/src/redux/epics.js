@@ -18,8 +18,8 @@ const Observable = Rx.Observable;
  * emission
  */
 const serverConfig = {
-  endpoint: "http://localhost:8080",
-  crossDomain: true,
+  endpoint: 'http://localhost:8080',
+  crossDomain: true
 };
 
 export function notifySuccess(notificationSystem, playerOne, playerTwo) {
@@ -32,46 +32,55 @@ export function startGameObservable(store) {
   const playerTwo = state.get('playerTwoName');
   const notificationSystem = state.get('notificationSystem');
   return Observable.create((observer) => {
-    if(playerOne.length > 0 && playerTwo.length > 0) {
+    if (playerOne.length > 0 && playerTwo.length > 0) {
       let response;
       server.post(serverConfig, playerOne, playerTwo).subscribe(
-        (xhr) => { response = xhr.response; },
-        (err) => { observer.error(err) },
-        () => { observer.next(doneStarting(response.id));
-                observer.complete();
+        (xhr) => {
+          response = xhr.response;
+        },
+        (err) => {
+          observer.error(err);
+        },
+        () => {
+          observer.next(doneStarting(response.id));
+          observer.complete();
         }
       );
     } else {
       observer.next({
-        type:'ERROR',
-        payload : { message: "Both players must input a name!" },
+        type: 'ERROR',
+        payload: { message: 'Both players must input a name!' }
       });
       observer.complete();
     }
-  })
+  });
 }
 
 export function checkMove(store) {
   const state = store.getState();
   const board = state.get('board');
   const players = [state.get('playerOneName'), state.get('playerTwoName')];
-  const attributes = { players, board }
+  const attributes = { players, board };
   const id = state.get('id');
   return Observable.create((observer) => {
     let results = evalBoard(attributes);
-    if(results.gameWon) {
+    if (results.gameWon) {
       server.update(serverConfig, id, attributes).subscribe(
         (xhr) => {},
-        (err) => { observer.error(err) },
+        (err) => {
+          observer.error(err);
+        },
         () => {
           observer.next(gameWon(results.winningPlayer, results.winningIndices));
           observer.complete();
         }
-      )
+      );
     } else if (results.gameDraw) {
       server.update(serverConfig, id, attributes).subscribe(
           (xhr) => {},
-          (err) => { observer.error(err) },
+          (err) => {
+            observer.error(err);
+          },
           () => {
             observer.next(gameDraw(results.winningPlayer, results.winningIndices));
             observer.complete();
@@ -85,25 +94,27 @@ export function saveObservable(store) {
   const state = store.getState();
   const board = state.get('board');
   const players = [state.get('playerOneName'), state.get('playerTwoName')];
-  const attributes = { players, board }
+  const attributes = { players, board };
   const id = state.get('id');
   const notificationSystem = state.get('notificationSystem');
   return Observable.create((observer) => {
     server.update(serverConfig, id, attributes).subscribe(
       (xhr) => {},
-      (err) => { observer.error(err) },
+      (err) => {
+        observer.error(err);
+      },
       () => {
         notificationSystem.addNotification({
           title: 'Game Saved',
           message: `Your game between ${players[0]} and ${players[1]} was saved.`,
           dismissible: true,
           position: 'tr',
-          level: 'success',
+          level: 'success'
         });
         observer.complete();
       }
-    )
-  })
+    );
+  });
 }
 
 export function listObservable(store) {
@@ -113,17 +124,21 @@ export function listObservable(store) {
     return Observable.create((observer) => {
       observer.next(toggleWaiting());
       server.list(serverConfig).subscribe(
-        (xhr) => { response = xhr.response },
-        (err) => { observer.error(err) },
+        (xhr) => {
+          response = xhr.response;
+        },
+        (err) => {
+          observer.error(err);
+        },
         () => {
-          if(response.data.length > 0) {
+          if (response.data.length > 0) {
             console.log(response.data);
             observer.next(listGames(response.data));
           }
           observer.next(toggleWaiting());
           observer.complete();
         }
-      )
+      );
     });
   } else {
     return Observable.empty();
@@ -132,27 +147,31 @@ export function listObservable(store) {
 
 export function loadObservable(action, store) {
   const id = action.id;
-  const notificationSystem = store.getState().get('notificationSystem')
+  const notificationSystem = store.getState().get('notificationSystem');
   return Observable.create((observer) => {
     let response;
     server.get(serverConfig, id).subscribe(
-      (xhr) => { response = xhr.response.data },
-      (err) => { observer.error(err) },
+      (xhr) => {
+        response = xhr.response.data;
+      },
+      (err) => {
+        observer.error(err);
+      },
       () => {
         console.log(response);
         let attrs = response.attributes;
-        observer.next(replaceGame(attrs))
+        observer.next(replaceGame(attrs));
         notificationSystem.addNotification({
           title: 'Game Saved',
           message: `A game between ${attrs.players[0]} and ${attrs.players[1]} was loaded.`,
           dismissible: true,
           position: 'tr',
-          level: 'success',
+          level: 'success'
         });
         observer.complete();
       }
-    )
-  })
+    );
+  });
 }
 export function saveEpic(action$, store) {
   return action$.ofType('SAVE_GAME')
@@ -161,15 +180,14 @@ export function saveEpic(action$, store) {
 
 export function startGameEpic(action$, store) {
   return action$.ofType('START_GAME')
-                .mergeMap(action => startGameObservable(store))
-
+                .mergeMap(action => startGameObservable(store));
 }
 
 export function moveEpic(action$, store) {
   return action$.ofType('MAKE_MOVE')
                 .mergeMap((action) => {
                   return checkMove(store);
-                })
+                });
 }
 
 export function listEpic(action$, store) {
@@ -179,9 +197,8 @@ export function listEpic(action$, store) {
 
 export function loadEpic(action$, store) {
   return action$.ofType('LOAD_GAME')
-                .mergeMap(action => loadObservable(action, store))
+                .mergeMap(action => loadObservable(action, store));
 }
-
 
 export function retryAndEmitError(err, source) {
   return source.startWith({ type: 'ERROR', payload: err, error: true });

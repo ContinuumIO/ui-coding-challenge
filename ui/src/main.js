@@ -37,7 +37,9 @@ class App extends React.PureComponent {
           <NameDisplay />
           <Game />
           <NotificationSystem
-            ref={(notificationSystem) => { this.notificationSystem = notificationSystem; }}
+            ref={(notificationSystem) => {
+              this.notificationSystem = notificationSystem;
+            }}
           />
         </div>
       </Provider>

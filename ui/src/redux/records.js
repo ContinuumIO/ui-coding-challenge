@@ -20,5 +20,5 @@ export const AppRecord = Immutable.Record({
   notificationSystem: null,
   listOpen: false,
   waiting: false,
-  games: [],
-})
+  games: []
+});

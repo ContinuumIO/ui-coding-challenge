@@ -4,13 +4,13 @@ import GameList from './saved';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => ({
-  listOpen : state.get('listOpen'),
-  waiting : state.get('waiting'),
-  games : state.get('games'),
+  listOpen: state.get('listOpen'),
+  waiting: state.get('waiting'),
+  games: state.get('games')
 });
 
 export class TopBar extends React.Component {
-  render () {
+  render() {
     return (
       <div className='topbar'>
         <GameList

@@ -5,13 +5,13 @@ describe('findWin', () => {
   it('returns a draw when expected', () => {
     const board = [0, 1, 0, 0, 1, 1, 1, 0, 0];
     expect(findWin(board)).to.deep.equal({
-      gameDraw: true,
+      gameDraw: true
     });
   });
   it('returns game in progress when expected', () => {
     const board = [null, 1, null, 0, 0, 1, 0, 1, 0, 1];
     expect(findWin(board)).to.deep.equal({
-      gameInProgress: true,
+      gameInProgress: true
     });
   });
   it('returns wins for horizontal', () => {
@@ -24,42 +24,42 @@ describe('findWin', () => {
     expect(findWin(boardOne)).to.deep.equal({
       gameWon: true,
       winningPlayer: 1,
-      indices: [0, 1, 2],
+      indices: [0, 1, 2]
     });
     expect(findWin(boardTwo)).to.deep.equal({
       gameWon: true,
       winningPlayer: 0,
-      indices: [0, 1, 2],
+      indices: [0, 1, 2]
     });
     expect(findWin(boardThree)).to.deep.equal({
       gameWon: true,
       winningPlayer: 1,
-      indices: [3, 4, 5],
+      indices: [3, 4, 5]
     });
     expect(findWin(boardFour)).to.deep.equal({
       gameWon: true,
       winningPlayer: 0,
-      indices: [3, 4, 5],
+      indices: [3, 4, 5]
     });
     expect(findWin(boardFive)).to.deep.equal({
       gameWon: true,
       winningPlayer: 1,
-      indices: [6, 7, 8],
+      indices: [6, 7, 8]
     });
     expect(findWin(boardSix)).to.deep.equal({
       gameWon: true,
       winningPlayer: 0,
-      indices: [6, 7, 8],
+      indices: [6, 7, 8]
     });
   });
-  //TODO make sure it works for diag and vertical
-})
+  // TODO make sure it works for diag and vertical
+});
 
 describe('evalBoard', () => {
   it('returns results with gameInProgress data', () => {
     const attributes = {
-      "players": ['John', "Continuum Analytics"],
-      "board": [null, null, null, null, null, null, 1, 0, null],
+      'players': ['John', 'Continuum Analytics'],
+      'board': [null, null, null, null, null, null, 1, 0, null]
     };
     expect(evalBoard(attributes)).to.deep.equal({
       'gameInProgress': true,
@@ -68,13 +68,13 @@ describe('evalBoard', () => {
       'winningPlayer': null,
       'indices': null,
       'againstComputer': null,
-      'currentPlayer': 0,
+      'currentPlayer': 0
     });
   });
   it('same game in progress test with another board', () => {
     const attributes = {
-      "players": ['John', "Continuum Analytics"],
-      "board": [0, 1, 0, null, null, null, null, null, null],
+      'players': ['John', 'Continuum Analytics'],
+      'board': [0, 1, 0, null, null, null, null, null, null]
     };
     expect(evalBoard(attributes)).to.deep.equal({
       'gameInProgress': true,
@@ -83,23 +83,23 @@ describe('evalBoard', () => {
       'winningPlayer': null,
       'indices': null,
       'againstComputer': null,
-      'currentPlayer': 1,
+      'currentPlayer': 1
     });
-  })
+  });
   it('returns result with Won data', () => {
     const board = [1, 1, 1, 0, 1, 0, 0, null, null];
     const attributes = {
-      players: ["Hire me", "please"],
-      board,
-    }
+      players: ['Hire me', 'please'],
+      board
+    };
     expect(evalBoard(attributes)).to.deep.equal({
       'gameInProgress': false,
       'gameWon': true,
       'gameDraw': false,
       'winningPlayer': 1,
-      'indices': [0,1,2],
+      'indices': [0, 1, 2],
       'againstComputer': null,
-      'currentPlayer': null,
+      'currentPlayer': null
     });
   });
-})
+});

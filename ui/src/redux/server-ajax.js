@@ -11,7 +11,7 @@ export function createAJAXSettings(serverConfig, uri = '/', opts = {}) {
   // like the method
   const settings = Object.assign({
     url,
-    responseType: 'json',
+    responseType: 'json'
   }, serverConfig, opts);
 
   delete settings.endpoint;
@@ -52,15 +52,15 @@ export function get(serverConfig, id) {
 export function post(serverConfig, playerOne, playerTwo) {
   const settings = createAJAXSettings(serverConfig, '/api/games', {
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
     method: 'POST',
     body: {
-      "players": [playerOne, playerTwo],
-      "board": [null, null, null,
-                null, null, null,
-                null, null, null]
-    },
+      'players': [playerOne, playerTwo],
+      'board': [null, null, null,
+        null, null, null,
+        null, null, null]
+    }
   });
   return ajax(settings);
 }
@@ -77,10 +77,10 @@ export function post(serverConfig, playerOne, playerTwo) {
 export function update(serverConfig, id, attributes) {
   const settings = createAJAXSettings(serverConfig, `/api/games/${id}`, {
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
     method: 'POST',
-    body: attributes,
+    body: attributes
   });
   return ajax(settings);
 }

@@ -12,7 +12,7 @@ export const errorMiddleware = store => next => (action) => {
   let errorText;
   if (action.payload) {
     window.payload = action.payload;
-    errorText = `${payload.message}`
+    errorText = `${payload.message}`;
   } else {
     errorText = JSON.stringify(action, 2, 2);
   }
@@ -24,11 +24,11 @@ export const errorMiddleware = store => next => (action) => {
       message: errorText,
       dismissible: true,
       position: 'tr',
-      level: 'error',
+      level: 'error'
     });
   }
   return next(action);
-}
+};
 
 const middlewares = [
   createEpicMiddleware(rootEpic),

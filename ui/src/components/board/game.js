@@ -19,9 +19,8 @@ const mapStateToProps = (state) => ({
   gameWon: state.get('gameWon'),
   gameDraw: state.get('gameDraw'),
   againstComputer: state.get('againstComputer'),
-  notificationSystem: state.get('notificationSystem'),
-})
-
+  notificationSystem: state.get('notificationSystem')
+});
 
 export class Game extends React.Component {
   constructor() {
@@ -43,7 +42,7 @@ export class Game extends React.Component {
       playerOneName: props.playerOneName,
       playerTwoName: props.playerTwoName,
       playerOneGames: props.games['0'],
-      playerTwoGames: props.games['1'],
+      playerTwoGames: props.games['1']
     };
   }
 
@@ -56,8 +55,8 @@ export class Game extends React.Component {
       winningIndices: props.winningIndices,
       board: props.board,
       gameWon: props.gameWon,
-      gameDraw: props.gameDraw,
-    }
+      gameDraw: props.gameDraw
+    };
   }
 
   createButtonsProps(props) {
@@ -66,12 +65,12 @@ export class Game extends React.Component {
       gameSetupInProgress: props.gameSetupInProgress,
       gameInProgress: props.gameInProgress,
       gameWon: props.gameWon,
-      gameDraw: props.gameDraw,
-    }
+      gameDraw: props.gameDraw
+    };
   }
 
-  render () {
-    let gameClasses = ['container']
+  render() {
+    let gameClasses = ['container'];
     if (this.props.blankSlate) {
       gameClasses.push('blank-slate');
     } else if (this.props.gameSetupInProgress) {
@@ -81,7 +80,7 @@ export class Game extends React.Component {
     } else if (this.props.gameDraw) {
       gameClasses.push('game-draw');
     }
-    gameClasses= gameClasses.join(' ')
+    gameClasses = gameClasses.join(' ');
     return (
       <div className={gameClasses}>
         <GameInfo {...this.createGameInfoProps(this.props)} />

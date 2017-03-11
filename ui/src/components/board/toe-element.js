@@ -29,17 +29,17 @@ export default class ToeElement extends React.Component {
         name='times'
         size='3x'
       />
-    </div>
+    </div>;
     const o = <div className='player-side'>
       <FontAwesome
         className='side-logo'
         name='circle-o'
         size='3x'
       />
-    </div>
+    </div>;
     const set = { 0: x, 1: o };
-    if(this.props.occupied === 0 || this.props.occupied === 1) {
-      if(this.props.winning) {
+    if (this.props.occupied === 0 || this.props.occupied === 1) {
+      if (this.props.winning) {
         return (
             <div
               className='toe-element winning'
@@ -48,7 +48,7 @@ export default class ToeElement extends React.Component {
             >
               { set[this.props.occupied] }
             </div>
-          );
+        );
       } else {
         return (
             <div
@@ -58,10 +58,10 @@ export default class ToeElement extends React.Component {
             >
               { set[this.props.occupied] }
             </div>
-          );
+        );
       }
     } else {
-      if(this.props.winning !== undefined) {
+      if (this.props.winning !== undefined) {
         return (
           <div className='toe-element'></div>
         );

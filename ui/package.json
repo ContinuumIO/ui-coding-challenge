@@ -58,6 +58,7 @@
     "watch": "npm run webpack -- --watch",
     "webpack": "parallel-webpack --config=./webpack.config.js --no-stats",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "test": "mocha --compilers js:babel-core/register \"tests/**/*.js\""
   },
   "version": "1.0.0"
