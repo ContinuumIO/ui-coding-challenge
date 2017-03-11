@@ -9,14 +9,16 @@
   Why Redux?
   ---
   This is where over engineering probably comes into play, I probably could have
-  used react's built in state management and have been fine but again, under
+  used react's builtin state management and have been fine but again, under
   pressure, go with what you're used to, right?
 
   Why RxJS and Redux-Observable?
   ---
   Look at how easy async is! Also, probably overengineering, but I like how
-  the backend are separated. Observables are way simpler to understand
+  the backend and frontend concerns are separated. Observables are way simpler to understand
   then promises in my opinion and I can cancel requests with Observables!
+  Epics is probably a bit of a misnomer in this case, but the actions in and actions out
+  middleware is super useful for communicating with a server.
 
   What would be my next steps?
   ---
