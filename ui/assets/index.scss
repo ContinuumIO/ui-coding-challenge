@@ -216,11 +216,11 @@ body {
       text-transform: uppercase;
       text-overflow: ellipsis;
       overflow-x: hidden;
-      white-space: nowrap;
     }
     .large {
       font-size: 45px;
       text-transform: none;
+      white-space: nowrap;
     }
     position: absolute;
     height: 440px;
