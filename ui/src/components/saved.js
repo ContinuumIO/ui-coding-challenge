@@ -52,7 +52,7 @@ export default class GameList extends React.Component {
           <ul>
           {
             (this.props.waiting) ?
-            <li className='loading'>
+            <li className='loading hidden'>
               Loading Games
               <div className='loading-icon'/>
             </li> : null
