@@ -9,3 +9,6 @@ export const START_GAME = 'START_GAME';
 export const DONE_STARTING = 'DONE_STARTING';
 export const REPLACE_GAME = 'REPLACE_GAME';
 export const SET_NOTIFICATION_SYSTEM = 'SET_NOTIFICATION_SYSTEM';
+export const TOGGLE_LIST = 'TOGGLE_LIST';
+export const TOGGLE_WAITING = 'TOGGLE_WAITING';
+export const LIST_GAMES = 'LIST_GAMES';

@@ -19,7 +19,6 @@ export function newGame(state, action) {
                  .set('gameWon', false)
                  .set('gameDraw', false)
                  .set('board', blankBoard)
-                 .set('games', { '0': 0, '1': 0 })
                  .set('winningIndices', null)
                  .set('currentPlayer', 0);
 }
@@ -85,7 +84,6 @@ export function replaceGame(state, action) {
                 .set('gameDraw', false)
                 .set('gameWon', [result.winningPlayer, result.winningIndices])
                 .set('againstComputer', result.againstComputer)
-                .set('gameSetupInProgress', true);
   } else {
     return state.set('board', board)
                 .set('playerOneName', players[0])
@@ -93,12 +91,25 @@ export function replaceGame(state, action) {
                 .set('gameInProgress', false)
                 .set('gameDraw', true)
                 .set('againstComputer', result.againstComputer)
-                .set('gameSetupInProgress', true);
   }
 }
 
 export function setNotificationSystem(state, action) {
   return state.set('notificationSystem', action.notificationSystem);
+}
+
+export function toggleList(state, action) {
+  return (state.get('listOpen')) ? state.set('listOpen',false) :
+          state.set('listOpen', true);
+}
+
+export function toggleWaiting(state, action) {
+  return (state.get('waiting')) ? state.set('waiting',false) :
+          state.set('waiting', true);
+}
+
+export function listGames(state, action) {
+  return state.set('games', action.games);
 }
 
 export default function handleApp(state, action) {
@@ -119,6 +130,12 @@ export default function handleApp(state, action) {
       return replaceGame(state, action);
     case "SET_NOTIFICATION_SYSTEM":
       return setNotificationSystem(state, action);
+    case "TOGGLE_LIST":
+      return toggleList(state, action);
+    case "TOGGLE_WAITING":
+      return toggleWaiting(state, action);
+    case "LIST_GAMES":
+      return listGames(state, action);
     default:
       return state;
   }

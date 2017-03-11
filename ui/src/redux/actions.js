@@ -56,6 +56,24 @@ export function saveGame() {
   }
 }
 
+export function toggleList() {
+  return {
+    type: constants.TOGGLE_LIST,
+  }
+}
+
+export function toggleWaiting() {
+  return {
+    type: constants.TOGGLE_WAITING,
+  }
+}
+
+export function listGames(games) {
+  return {
+    type: constants.LIST_GAMES,
+    games,
+  }
+}
 
 export function loadGame(id) {
   return {

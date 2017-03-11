@@ -13,6 +13,7 @@ body {
   font-family: 'Lato', sans-serif !important;
   font-weight:400;
 }
+
 #app {
   height: 100%;
   .topbar {
@@ -34,15 +35,65 @@ body {
       display: flex;
       justify-content: flex-end;
     }
+    .dropdown {
+      display: block;
+    }
+
+    .dropdown__content {
+      display: none;
+      border-style: none;
+      padding: 0;
+      font-size: 20px;
+      width: 240px;
+      line-height: 1.5;
+      background-color: $gray;
+      height: 385px;
+      border-radius: 0px 0px 5px 5px;
+    }
+
+    .dropdown__content ul {
+      display: block !important;
+      color: #FFF;
+      margin: 0px auto 0px auto;
+      max-width: 220px;
+      padding: 0px;
+      text-align: center;
+      background: $gray;
+      height:380px;
+      overflow: hidden;
+      overflow-y: scroll;
+    }
+
+    .dropdown__content li {
+      padding: 0.5rem;
+
+    }
+
+    .dropdown__content li:hover {
+      background: $gray-light;
+      cursor: pointer;
+    }
+
+    .dropdown--active .dropdown__content {
+      display: inline-block;
+    }
+
+    .btn-game-open {
+      border-radius: 5px 5px 0px 0px;
+    }
     .btn-game {
-      margin: 0px 5px 0px 5px;
       padding: 13px;
       font-size: 20px;
-      width: 180px;
+      width: 240px;
       height: 50px;
       color: #fff;
       background-color: $gray;
       box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px;
+      display: flex;
+      justify-content: center;
+    }
+    .button-icon {
+      margin: 0px 15px 0px 15px;
     }
   }
   .blank-slate{
@@ -297,12 +348,12 @@ body {
           overflow: hidden;
           text-overflow: ellipsis;
           margin: 10px 10px 10px 10px;
-          color: $gray;
+          color: $gray-dark;
           font-size: 36px;
           text-transform: capitalize;
           font-weight: bolder;
           white-space: nowrap;
-          max-width: 400px;
+          max-width: 300px;
         }
         .side-logo {
           margin: 10px 10px 10px 10px;

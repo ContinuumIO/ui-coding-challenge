@@ -1,12 +1,23 @@
 import React from 'react';
+import GameList from './saved';
 
-export default class TopBar extends React.Component {
+import { connect } from 'react-redux';
+
+const mapStateToProps = (state) => ({
+  listOpen : state.get('listOpen'),
+  waiting : state.get('waiting'),
+  games : state.get('games'),
+});
+
+export class TopBar extends React.Component {
   render () {
     return (
       <div className='topbar'>
-        <div id='oldGames'>
-          <div className='btn btn-game'> Previous Games </div>
-        </div>
+        <GameList
+          listOpen = {this.props.listOpen}
+          waiting= {this.props.waiting}
+          games = {this.props.games}
+        />
         <div id='restartGame'>
           <div className='btn btn-game hidden'> Reset App </div>
         </div>
@@ -14,3 +25,5 @@ export default class TopBar extends React.Component {
     );
   }
 }
+
+export default connect(mapStateToProps)(TopBar);
