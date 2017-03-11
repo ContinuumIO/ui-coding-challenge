@@ -22,10 +22,6 @@ const serverConfig = {
   crossDomain: true
 };
 
-export function notifySuccess(notificationSystem, playerOne, playerTwo) {
-
-}
-
 export function startGameObservable(store) {
   const state = store.getState();
   const playerOne = state.get('playerOneName');
@@ -132,7 +128,6 @@ export function listObservable(store) {
         },
         () => {
           if (response.data.length > 0) {
-            console.log(response.data);
             observer.next(listGames(response.data));
           }
           observer.next(toggleWaiting());
@@ -158,7 +153,6 @@ export function loadObservable(action, store) {
         observer.error(err);
       },
       () => {
-        console.log(response);
         let attrs = response.attributes;
         observer.next(replaceGame(attrs));
         notificationSystem.addNotification({

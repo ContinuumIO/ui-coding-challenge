@@ -80,7 +80,7 @@ export function update(serverConfig, id, attributes) {
       'Content-Type': 'application/json'
     },
     method: 'POST',
-    body: attributes
-  });
+    body: { players: attributes.players, board: attributes.board }
+   });
   return ajax(settings);
 }
