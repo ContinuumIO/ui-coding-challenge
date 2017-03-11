@@ -6,8 +6,13 @@ export default class ToeBoard extends React.Component {
     const row1 = this.props.board.slice(0,3);
     const row2 = this.props.board.slice(3,6);
     const row3 = this.props.board.slice(6,9);
+    let boardClasses = ['board'];
+    if (this.props.blankSlate || this.props.gameSetupInProgress) {
+      boardClasses.push('hidden');
+    }
+    boardClasses= boardClasses.join(' ')
     return (
-      <div className='board-container'>
+      <div className={boardClasses}>
         <div className='board-bg'>
           <div className='row'>
             { row1.map((val, index) => { return <ToeElement occupied={val} key={index} /> } ) }

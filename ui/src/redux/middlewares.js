@@ -8,4 +8,7 @@ const middlewares = [
   createEpicMiddleware(rootEpic)
 ];
 
+const logger = require('./logger'); // eslint-disable-line global-require
+middlewares.push(logger());
+
 export default middlewares;

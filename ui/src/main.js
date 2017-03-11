@@ -8,8 +8,10 @@ import { AppRecord } from './redux/records';
 import { setNotificationSystem } from './redux/actions';
 
 import '../assets/index.scss';
-import Game from './components/board/game.js';
-import TopBar from './components/topbar.js';
+
+import NameDisplay from './components/name-display';
+import Game from './components/board/game';
+import TopBar from './components/topbar';
 /*
 import Board from './components/toe-board.js';
 import Creator from './components/game-creator.js';
@@ -32,6 +34,7 @@ class App extends React.PureComponent {
       <Provider store={store}>
         <div>
           <TopBar />
+          <NameDisplay />
           <Game />
           <NotificationSystem
             ref={(notificationSystem) => { this.notificationSystem = notificationSystem; }}

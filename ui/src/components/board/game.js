@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import ScoreBoard from './scoreboard';
+import GameInfo from './game-info';
 import ToeBoard from './toeboard';
 import Buttons from './buttons';
 
@@ -26,12 +26,12 @@ const mapStateToProps = (state) => ({
 export class Game extends React.Component {
   constructor() {
     super();
-    this.createScoreBoardProps = this.createScoreBoardProps.bind(this);
+    this.createGameInfoProps = this.createGameInfoProps.bind(this);
     this.createToeBoardProps = this.createToeBoardProps.bind(this);
     this.createButtonsProps = this.createButtonsProps.bind(this);
   }
 
-  createScoreBoardProps(props) {
+  createGameInfoProps(props) {
     return {
       blankSlate: props.blankSlate,
       gameSetupInProgress: props.gameSetupInProgress,
@@ -40,7 +40,7 @@ export class Game extends React.Component {
       playerOneName: props.playerOneName,
       playerTwoName: props.playerTwoName,
       playerOneGames: props.games['0'],
-      playerTwoGame: props.games['1'],
+      playerTwoGames: props.games['1'],
     };
   }
 
@@ -50,6 +50,7 @@ export class Game extends React.Component {
       gameSetupInProgress: props.gameSetupInProgress,
       gameInProgress: props.gameInProgress,
       currentPlayer: props.currentPlayer,
+      winningIndices: props.winningIndices,
       board: props.board,
       gameWon: props.gameWon,
       gameDraw: props.gameDraw,
@@ -65,9 +66,20 @@ export class Game extends React.Component {
   }
 
   render () {
+    let gameClasses = ['container']
+    if (this.props.blankSlate) {
+      gameClasses.push('blank-slate');
+    } else if (this.props.gameSetupInProgress) {
+      gameClasses.push('game-setup');
+    } else if (this.props.gameWon) {
+      gameClasses.push('game-won');
+    } else if (this.props.gameDraw) {
+      gameClasses.push('game-draw');
+    }
+    gameClasses= gameClasses.join(' ')
     return (
-      <div className="container">
-        <ScoreBoard {...this.createButtonsProps(this.props)} />
+      <div className={gameClasses}>
+        <GameInfo {...this.createGameInfoProps(this.props)} />
         <ToeBoard {...this.createToeBoardProps(this.props)} />
         <Buttons {...this.createButtonsProps(this.props)}/>
       </div>

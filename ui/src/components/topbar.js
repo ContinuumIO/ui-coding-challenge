@@ -4,7 +4,12 @@ export default class TopBar extends React.Component {
   render () {
     return (
       <div className='topbar'>
-        <div id='old-games' className='title'> TIC TAC TOE </div>
+        <div id='oldGames'>
+          <div className='btn btn-game'> Previous Games </div>
+        </div>
+        <div id='restartGame'>
+          <div className='btn btn-game'> Reset App </div>
+        </div>
       </div>
     );
   }

@@ -7,7 +7,7 @@ export function newGame(samePlayers) {
   }
 }
 
-export function savePlayerName(playerName, playerNumber) {
+export function savePlayerName(playerNumber, playerName) {
   return {
     type: constants.SAVE_PLAYER_NAME,
     playerName,
@@ -18,6 +18,12 @@ export function savePlayerName(playerName, playerNumber) {
 export function startGame() {
   return {
     type: constants.START_GAME,
+  }
+}
+
+export function doneStarting() {
+  return {
+    type: constants.DONE_STARTING,
   }
 }
 

@@ -25,11 +25,6 @@ export function savePlayerName(state, action) {
   }
 }
 
-export function startGame(state, action) {
-  return state.set('gameInProgress', true)
-              .set('gameSetupInProgress', false);
-}
-
 export function gameWon(state, action) {
   const games = state.get('games');
   games[action.playerNumber]++;
@@ -50,6 +45,12 @@ export function makeMove(state, action) {
   const newBoard = state.get('board');
   newBoard[action.index] = action.playerNumber
   return state.set('board', newBoard);
+}
+
+export function doneStarting(state, action) {
+  return state.set('gameInProgress', true)
+              .set('gameSetupInProgress', false)
+              .set('blankSlate', false);
 }
 
 export function replaceGame(state, action) {
@@ -96,8 +97,8 @@ export default function handleApp(state, action) {
       return newGame(state, action);
     case "SAVE_PLAYER_NAME":
       return savePlayerName(state, action);
-    case "START_GAME":
-      return startGame(state, action);
+    case "DONE_STARTING":
+      return doneStarting(state, action);
     case "GAME_WON":
       return gameWon(state, action);
     case "GAME_DRAW":

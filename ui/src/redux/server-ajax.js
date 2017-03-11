@@ -1,14 +1,4 @@
 import { ajax } from 'rxjs/observable/dom/ajax';
-import * as uuid from 'uuid';
-
-/*
-  CHANGE THIS IN PRODUCTION,
-  Maybe parse from command line args and pass down to here?
- */
-const serverConfig = {
-  endpoint: "http://127.0.0.1:8080",
-  crossDomain: true,
-};
 
 export function normalizeBaseURL(url) {
   return url.replace(/\/+$/, '');
@@ -60,21 +50,16 @@ export function get(serverConfig, id) {
  * @return  {AjaxObservable}  An Observable with the request response
  */
 export function post(serverConfig, playerOne, playerTwo) {
-  id = uuid();
   const settings = createAJAXSettings(serverConfig, '/api/games', {
     headers: {
       'Content-Type': 'application/json',
     },
     method: 'POST',
     body: {
-      "type": "Game",
-      id,
-      "attributes": {
-        "players": [playerOne, playerTwo],
-        "board": [null, null, null,
-                  null, null, null,
-                  null, null, null]
-      }
+      "players": [playerOne, playerTwo],
+      "board": [null, null, null,
+                null, null, null,
+                null, null, null]
     },
   });
   return ajax(settings);
@@ -89,16 +74,14 @@ export function post(serverConfig, playerOne, playerTwo) {
  *
  * @return  {AjaxObservable}  An Observable with the request response
  */
-export function update(serverConfig, id, attributes) {
-  const settings = createAJAXSettings(serverConfig, '/api/games/id', {
+export function update(serverConfig, id, board) {
+  const settings = createAJAXSettings(serverConfig, `/api/games/${id}`, {
     headers: {
       'Content-Type': 'application/json',
     },
     method: 'POST',
     body: {
-      "type": "Game",
-      id,
-      attributes,
+      board,
     }
   });
   return ajax(settings);

@@ -6,5 +6,6 @@ export const GAME_WON = 'GAME_WON';
 export const GAME_DRAW = 'GAME_DRAW';
 export const SAVE_PLAYER_NAME = 'SAVE_PLAYER_NAME';
 export const START_GAME = 'START_GAME';
+export const DONE_STARTING = 'DONE_STARTING';
 export const REPLACE_GAME = 'REPLACE_GAME';
 export const SET_NOTIFICATION_SYSTEM = 'SET_NOTIFICATION_SYSTEM';
