@@ -6,14 +6,19 @@ export function newGame(state, action) {
   if(action.samePlayers) {
     return state.set('gameSetupInProgress', true)
                 .set('blankSlate', false)
-                .set('board', blankBoard);
+                .set('board', blankBoard)
+                .set('winningIndices', null)
+                .set('id', null)
+                .set('currentPlayer', 0);
   } else {
     return state.set('gameSetupInProgress', true)
                 .set('blankSlate', false)
                 .set('board', blankBoard)
                 .set('games', { '0': 0, '1': 0 })
+                .set('winningIndices', null)
                 .set('playerOneName', '')
-                .set('playerTwoName', '');
+                .set('playerTwoName', '')
+                .set('currentPlayer', 0);
   }
 }
 
@@ -43,12 +48,15 @@ export function gameDraw(state, action) {
 
 export function makeMove(state, action) {
   const newBoard = state.get('board');
-  newBoard[action.index] = action.playerNumber
-  return state.set('board', newBoard);
+  newBoard[action.index] = action.playerNumber;
+  const currentPlayer = (action.playerNumber === 0) ? 1 : 0;
+  return state.set('board', newBoard)
+              .set('currentPlayer', currentPlayer);
 }
 
 export function doneStarting(state, action) {
   return state.set('gameInProgress', true)
+              .set('id', action.id)
               .set('gameSetupInProgress', false)
               .set('blankSlate', false);
 }
@@ -105,8 +113,6 @@ export default function handleApp(state, action) {
       return gameDraw(state, action);
     case "MAKE_MOVE":
       return makeMove(state, action);
-    case "SAVE_GAME":
-      return saveGame(state, action);
     case "REPLACE_GAME":
       return replaceGame(state, action);
     case "SET_NOTIFICATION_SYSTEM":

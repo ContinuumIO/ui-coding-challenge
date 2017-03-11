@@ -21,9 +21,10 @@ export function startGame() {
   }
 }
 
-export function doneStarting() {
+export function doneStarting(id) {
   return {
     type: constants.DONE_STARTING,
+    id,
   }
 }
 
@@ -49,10 +50,9 @@ export function makeMove(playerNumber, index) {
   }
 }
 
-export function saveGame(attributes) {
+export function saveGame() {
   return {
     type: constants.SAVE_GAME,
-    attributes,
   }
 }
 

@@ -6,7 +6,7 @@ html {
   font-size: 1em;
   line-height: 1.4;
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: scroll;
 }
 body {
   margin: 0px;
@@ -16,7 +16,7 @@ body {
 #app {
   height: 100%;
   .topbar {
-    background: $gray-dark;
+    background: #FFF;
     height:50px;
     color: #FFF;
     display: flex;
@@ -172,6 +172,12 @@ body {
       display: flex;
       justify-content: center;
     }
+    .message {
+      font-size: 16px;
+      color: #FFF;
+      text-transform: capitalize;
+      font-weight: bold;
+    }
     .side-logo {
       color: #fff;
       background: #FFF;
@@ -195,14 +201,18 @@ body {
       height: 85px;
       justify-content: center;
     }
+    .winning {
+      background: #ccffcc!important;
+    }
     .toe-element {
+
       text-align: center;
       height: 80px;
       width: 80px;
       background: #FFF;
       box-shadow: 1px;
       margin:5px;
-      padding:5px;
+      padding:13px;
       border-radius: 5px;
     }
   }
@@ -224,13 +234,15 @@ body {
   .game-title {
     margin-left: auto;
     margin-right: auto;
-    height: 100px;
-    background-color: $gray-dark;
+    background-color: #FFF;
     .splash {
-      margin: 00px auto 20px auto;
-      font-size: 50px;
+      margin: 20px auto 20px auto;
+      font-size: 40px;
       text-align: center;
-      color: #FFF;
+      color: $gray-dark;
+      font-weight: bolder;
+      max-width: 50%;
+      text-transform: capitalize;
     }
     .name-display {
       display: flex;
@@ -240,16 +252,16 @@ body {
         justify-content: center;
         width: 50%;
         margin: 10px;
-        align-items: center;
         .player-name {
           margin: 10px 10px 10px 10px;
-          color: #FFF;
+          color: $gray-dark;
           font-size: 36px;
-
+          text-transform: capitalize;
+          font-weight: bolder;
         }
         .side-logo {
           margin: 10px 10px 10px 10px;
-          color: #FFF;
+          color: $gray-dark;
         }
       }
     }

@@ -23,7 +23,6 @@ export default class ToeElement extends React.Component {
   }
 
   render() {
-    let element;
     const x = <div className='player-side'>
       <FontAwesome
         className='side-logo'
@@ -39,24 +38,36 @@ export default class ToeElement extends React.Component {
       />
     </div>
     const set = { 0: x, 1: o };
-    if(this.props.occupied) {
-      return (
-          <div
-            className='toe-element'
-            onMouseEnter={this.toggleHoverOccupied}
-            onMouseLeave={this.toggleHoverOccupied}
-            winning={this.props.winningIndices.some(val => val === this.props.occupied)}
-          >
-            { set[this.props.occupied] }
-          </div>
-        );
+    if(this.props.occupied === 0 || this.props.occupied === 1) {
+      if(this.props.winning) {
+        return (
+            <div
+              className='toe-element winning'
+              onMouseEnter={this.toggleHoverOccupied}
+              onMouseLeave={this.toggleHoverOccupied}
+            >
+              { set[this.props.occupied] }
+            </div>
+          );
+      } else {
+        return (
+            <div
+              className='toe-element'
+              onMouseEnter={this.toggleHoverOccupied}
+              onMouseLeave={this.toggleHoverOccupied}
+            >
+              { set[this.props.occupied] }
+            </div>
+          );
+      }
     } else {
       return (
         <div
           className='toe-element'
           onMouseEnter={this.toggleHover}
           onMouseLeave={this.toggleHover}
-          onClick={this.makeMove.bind(this, this.props.currentPlayer, this.props.key)}>
+          onClick={this.makeMove.bind(this, this.props.currentPlayer, this.props.index)}
+        >
         </div>
       );
     }

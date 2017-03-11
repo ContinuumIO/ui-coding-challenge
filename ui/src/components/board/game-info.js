@@ -5,7 +5,6 @@ import PlayerScore from './player-score';
 export default class GameInfo extends React.Component {
 
   updateName(playerNumber, event) {
-    console.log(playerNumber + 'name input! ' + event.target.value)
     store.dispatch(savePlayerName(playerNumber, event.target.value));
   }
 
@@ -33,22 +32,18 @@ export default class GameInfo extends React.Component {
           />
         </div> );
     } else {
-      return (
-          <div className='scoreboard'>
-            <PlayerScore
-              playerNumber={0}
-              currentPlayer={this.props.currentPlayer}
-              gamesWon={this.props.playerOneGames}
-              playerName={this.props.playerOneName}
-            />
-            <PlayerScore
-              playerNumber={1}
-              currentPlayer={this.props.currentPlayer}
-              gamesWon={this.props.playerTwoGames}
-              playerName={this.props.playerTwoName}
-            />
-          </div>
-      );
+      if(this.props.gameWon|| this.props.gameDraw) {
+        return <div className='scoreboard'></div>
+      } else {
+        let message = (this.props.currentPlayer === 0 ) ?
+          `It is your turn, ${this.props.playerOneName}` :
+          `It is your turn, ${this.props.playerTwoName}`;
+        return (
+            <div className='scoreboard'>
+              <div className='message'> {message} </div>
+            </div>
+        );
+      }
     }
   }
 }

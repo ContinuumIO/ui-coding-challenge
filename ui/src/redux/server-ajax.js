@@ -74,15 +74,14 @@ export function post(serverConfig, playerOne, playerTwo) {
  *
  * @return  {AjaxObservable}  An Observable with the request response
  */
-export function update(serverConfig, id, board) {
+export function update(serverConfig, id, attributes) {
+  console.log(id, attributes)
   const settings = createAJAXSettings(serverConfig, `/api/games/${id}`, {
     headers: {
       'Content-Type': 'application/json',
     },
     method: 'POST',
-    body: {
-      board,
-    }
+    body: attributes,
   });
   return ajax(settings);
 }

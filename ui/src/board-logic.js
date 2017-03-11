@@ -12,7 +12,7 @@ export function evalBoard(attributes) {
     'gameWon': false,
     'gameDraw': false,
     'winningPlayer': null,
-    'indices': null,
+    'winningIndices': null,
     'againstComputer': null,
     'currentPlayer': null,
   }
@@ -45,10 +45,11 @@ export function findWin(board) {
   const winningSets = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
   for(var i=0; i<8; i++) {
     var prev = board[winningSets[i][0]];
-    if(prev === null) {
+    // check null or undefined
+    if(prev == null) {
       continue;
     } else if (winningSets[i].every((val) => { return board[val] === prev })) {
-      return { gameWon: true, winningPlayer: prev, indices: winningSets[i] }
+      return { gameWon: true, winningPlayer: prev, winningIndices: winningSets[i] }
     } else {
       continue;
     }

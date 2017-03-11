@@ -7,6 +7,7 @@ export const AppRecord = Immutable.Record({
   gameInProgress: false,
   gameSetupInProgress: false,
   blankSlate: true,
+  id: null,
   winningPlayer: null,
   winningIndices: null,
   playerOneName: '',

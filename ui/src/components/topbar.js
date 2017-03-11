@@ -8,7 +8,7 @@ export default class TopBar extends React.Component {
           <div className='btn btn-game'> Previous Games </div>
         </div>
         <div id='restartGame'>
-          <div className='btn btn-game'> Reset App </div>
+          <div className='btn btn-game hidden'> Reset App </div>
         </div>
       </div>
     );

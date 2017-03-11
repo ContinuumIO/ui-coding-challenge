@@ -11,7 +11,7 @@ export default class Buttons extends React.Component {
     super()
     this.newGame = this.newGame.bind(this);
     this.startGame = this.startGame.bind(this);
-    this.saveGame = this.startGame.bind(this);
+    this.saveGame = this.saveGame.bind(this);
   }
 
   newGame() {
@@ -26,9 +26,6 @@ export default class Buttons extends React.Component {
   }
 
   render () {
-    console.log('BUTTONS PROPS');
-    console.log(store);
-    console.log(this.props);
     let buttons;
     if(this.props.blankSlate) {
       buttons =
