@@ -37,6 +37,7 @@ body {
     }
     .dropdown {
       display: block;
+      z-index: 100;
     }
 
     .dropdown__content {
@@ -145,7 +146,7 @@ body {
     text-align: center;
     width: 120px;
     height: 50px;
-    z-index: 100;
+    z-index: 99;
     white-space: nowrap;
     vertical-align: middle;
     -webkit-user-select: none;
@@ -226,7 +227,7 @@ body {
     width: 350px;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.73);
-    z-index: 99;
+    z-index: 98;
     padding: 100px 0px 0px 0px;
     text-align: center;
     -webkit-animation: fade-in 800ms ease 1200ms;
