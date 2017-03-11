@@ -72,6 +72,7 @@ export function replaceGame(state, action) {
                 .set('playerOneName', players[0])
                 .set('playerTwoName', players[1])
                 .set('gameInProgress', true)
+                .set('gameSetupInProgress', false)
                 .set('gameDraw', false)
                 .set('gameWon', false)
                 .set('againstComputer', result.againstComputer)
