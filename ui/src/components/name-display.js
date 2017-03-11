@@ -12,16 +12,21 @@ const mapStateToProps = (state) => ({
 
 export class NameDisplay extends React.Component {
   render() {
-    return (
-      <div className='game-title'>
-        { (this.props.blankSlate) ?
-          <div className='splash'> Welcome to Tic Tac Toe </div> : null
-        }
-        {
-          (this.props.gameSetupInProgress) ?
-          <div className='splash'> Enter names for the two players who wish to play </div> : null
-        }
-        { (this.props.gameInProgress) ?
+    if(this.props.blankSlate) {
+      return (
+        <div className='game-title'>
+            <div className='splash'> Welcome to Tic Tac Toe </div>
+        </div>
+      )
+    } else if (this.props.gameSetupInProgress) {
+      return (
+        <div className='game-title'>
+          <div className='splash'> Enter names for the two players who wish to play </div>
+        </div>
+      )
+    } else {
+      return (
+        <div className='game-title'>
           <div className='name-display'>
             <div className='player-info'>
                 <div className='player-side'>
@@ -43,10 +48,10 @@ export class NameDisplay extends React.Component {
                 />
               </div>
             </div>
-          </div> : null
-        }
-      </div>
-    );
+          </div>
+        </div>
+      );
+    }
   }
 }
 

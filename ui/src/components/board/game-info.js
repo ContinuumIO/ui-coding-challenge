@@ -36,8 +36,8 @@ export default class GameInfo extends React.Component {
         return <div className='scoreboard'></div>
       } else {
         let message = (this.props.currentPlayer === 0 ) ?
-          `It is your turn, ${this.props.playerOneName}` :
-          `It is your turn, ${this.props.playerTwoName}`;
+          `It is your turn, ${this.props.playerOneName.split(' ')[0]}` :
+          `It is your turn, ${this.props.playerTwoName.split(' ')[0]}`;
         return (
             <div className='scoreboard'>
               <div className='message'> {message} </div>

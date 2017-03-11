@@ -5,6 +5,7 @@ export function newGame(state, action) {
   const blankBoard = [ null, null, null, null, null, null, null, null, null ];
   if(action.samePlayers) {
     return state.set('gameSetupInProgress', true)
+                .set('gameInProgress', false)
                 .set('blankSlate', false)
                 .set('board', blankBoard)
                 .set('winningIndices', null)
@@ -13,6 +14,7 @@ export function newGame(state, action) {
   } else {
     return state.set('gameSetupInProgress', true)
                 .set('blankSlate', false)
+                .set('gameInProgress', false)
                 .set('board', blankBoard)
                 .set('games', { '0': 0, '1': 0 })
                 .set('winningIndices', null)
