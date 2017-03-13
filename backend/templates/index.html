@@ -1,9 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Continuum UI Coding Challenge</title>
-        <script src="{{ static_url('bundle.js') }}"></script>
-    </head>
-    <body>
-    </body>
-</html
+<head>
+  <meta charset="utf-8" />
+  <title>TIC-TAC-TOE</title>
+  <script src="{{ static_url('bundle.js') }}"></script>
+</head>
+<body>
+  <h1 align="center"> TIC-TAC-TOE </h1>
+  <div id="welcome-banner" class="banner active" align="center">
+    <br>
+    <input id="playerX" type="text" class="enter" placeholder="Playing with X"></input>
+    <input id="set-players-button" type="button" class="button win" value="START"></input>
+    <input id="playerO" type="text" class="enter" placeholder="Playing with O"></input>
+  </div>
+
+  <div id="outcome-banner" class="banner inactive" align="center">
+    <h2 id="banner" align="center"></br></h2>
+  </div>
+  <div>
+    <canvas id="board" width="550" height="550"></canvas>
+  </div>
+<br>
+  <div id="game-control" align="center">
+    <button id="save-button" class="button">Save Game</button>
+    <button id="reset-button" class="button">Play Again</button>
+    <button id="set-up-button" class="button">Reset Names</button>
+  </div>
+</body>
+</html>
