@@ -170,7 +170,7 @@ function play(x, y) {
   if(box_x != null) {
     var box_y = getCenter(y);
     if(box_y != null) {
-      if(~alreadyPlayed(game, box_x, box_y)){
+      if(!alreadyPlayed(game, box_x, box_y)) {
         if(game.player=="X") {
           drawX(centers[box_x], centers[box_y]);
           var game = storePlay(game, box_x, box_y);
