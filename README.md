@@ -44,8 +44,8 @@ Coffeescript, Clojurescript, Elm, or Dart.
 
 ## Setup
 
-The skeleton application here is designed to work with Python 3.5 and Node.js
-4.2+ -- we suggest using [conda](http://conda.pydata.org) and the
+The skeleton application here is designed to work with Python 3.6 and Node.js
+6.11+ -- we suggest using [conda](http://conda.pydata.org) and the
 supplied
 [environment.yml](http://conda.pydata.org/docs/using/envs.html#use-environment-from-file) file
 to recreate the environment.
@@ -117,6 +117,40 @@ specification.
 
 - `POST /api/games/<id>`: Update the `Game` with the given ID, replacing its
   data with the newly `POST`ed data.
+
+### GraphQL
+
+As an alternative to the REST JSON API described above, you may choose to implement your
+client-server communication with [GraphQL](https://www.graphql.org). The server exposes a
+rudimentary GraphQL API via the `/graphql` endpoint, complying with the following schema:
+
+``` graphql
+type Game {
+  id: ID!
+  players: [String]!
+  board: [[Int]]!
+}
+
+type Query {
+  games: [ID]
+  game(id: ID!): Game
+}
+
+type CreateGameMutation {
+  createGame (data: {
+    players: [String]!,
+    board: [[Int]]!
+  }): ID
+}
+
+type UpdateGameMutation {
+  updateGame (data: {
+    id: ID!,
+    board: [[Int]]!
+  }): ID
+}
+
+```
 
 ## Optional
 

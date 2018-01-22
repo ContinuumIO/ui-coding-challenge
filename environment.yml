@@ -1,7 +1,9 @@
 name: ui-coding-challenge
 channels:
 - defaults
+- conda-forge
 dependencies:
-- nodejs=4.2.6=0
-- python=3.5.2=0
-- tornado=4.4.2=py35_0
+- nodejs=6.11.2=hff78e64_0
+- python=3.6.4=hc167b69_1
+- tornado=4.5.3=py36_0
+
