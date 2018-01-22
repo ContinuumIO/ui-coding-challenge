@@ -118,6 +118,40 @@ specification.
 - `POST /api/games/<id>`: Update the `Game` with the given ID, replacing its
   data with the newly `POST`ed data.
 
+### GraphQL
+
+As an alternative to the REST JSON API described above, you may choose to implement your
+client-server communication with [GraphQL](https://www.graphql.org). The server exposes a
+rudimentary GraphQL API via the `/graphql` endpoint, complying with the following schema:
+
+``` graphql
+type Game {
+  id: ID!
+  players: [String]!
+  board: [[Int]]!
+}
+
+type Query {
+  games: [ID]
+  game(id: ID!): Game
+}
+
+type CreateGameMutation {
+  createGame (data: {
+    players: [String]!,
+    board: [[Int]]!
+  }): ID
+}
+
+type UpdateGameMutation {
+  updateGame (data: {
+    id: ID!,
+    board: [[Int]]!
+  }): ID
+}
+
+```
+
 ## Optional
 
 If you have extra time and want to take on an additional challenge, you may
