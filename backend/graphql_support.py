@@ -4,6 +4,9 @@ from tornado.web import RequestHandler
 
 from .game import Game, STORE
 
+#
+# TODO: tests! verify this all works!
+#
 
 class GameType(graphene.ObjectType):
     id = graphene.ID(required=True)
